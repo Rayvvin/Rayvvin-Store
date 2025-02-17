@@ -16,7 +16,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 type RefinementListProps = {
   refinementList: StoreGetProductsParams
   setRefinementList: (refinementList: StoreGetProductsParams) => void
-  // categories?: any
+  categories?: any
 }
 
 type SearchParamProps = {
@@ -26,7 +26,8 @@ type SearchParamProps = {
 const RefinementList = ({
   refinementList,
   setRefinementList,
-}: // categories,
+  categories,
+}: 
 RefinementListProps) => {
   const { collections, isLoading } = useCollections()
   const { product_categories } = useProductCategories({ expand: "products" })
@@ -136,7 +137,9 @@ RefinementListProps) => {
   }
 
   return (
-    <div className="sticky top-0 inset-x-0 z-50 group">
+    <div 
+    // className="sticky top-2.5 inset-x-0 group"
+    >
       <div className="px-8 py-4  small:pr-2 small:pl-4 small:min-w-[250px] shadow-sm hidden flex-col h-full p-4 m-2 bg-white rounded-md space-y-4 lg:flex">
         <div className="flex w-full justify-between items-center">
           {/* <input

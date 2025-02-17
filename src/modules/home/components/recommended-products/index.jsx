@@ -10,13 +10,13 @@ import { useEffect, useState } from "react"
 import useStores from "@lib/hooks/use-stores"
 
 const RecommendedProducts = (props) => {
-  const [products, setProducts] = useState([])
-  const [categories, setCategories] = useState([])
+  const [products, setProducts] = useState(null)
+  const [categories, setCategories] = useState(null)
   const { store, users, products: prods, categories: cat } = props
   const { data } = useFeaturedProductsQuery({
-    limit: 12,
+    limit: 10,
     // category_id: categories,
-    id: prods && prods.length && prods.map((p) => p.id),
+    // id: prods && prods.length && prods.map((p) => p.id),
     // store: store,
   })
 
@@ -130,9 +130,15 @@ const RecommendedProducts = (props) => {
 
         <ul
           // className="grid grid-cols-2 small:grid-cols-6 gap-x-4 gap-y-8"
+          //   className={` ${
+          //     products && products.length > 0 ? "grid" : "flex"
+          //   } grid-cols-2 sm:grid-cols-3 small:grid-cols-5 gap-x-4 gap-y-8`}
+          // >
+
           className={` ${
             products && products.length > 0 ? "grid" : "flex"
-          } grid-cols-2 sm:grid-cols-3 small:grid-cols-6 gap-x-4 gap-y-8`}
+          } gap-x-4 flex-auto justfiy-around flex-nowrap mb-4 min-w-80 overflow-x-auto max-w-full grid-cols-2 sm:grid-cols-3 small:grid-cols-5 gap-x-4 gap-y-8`}
+          style={{ scrollbarWidth: "none" }}
         >
           {products && products.length > 0 ? (
             products.toReversed().map((product) => (
@@ -148,9 +154,12 @@ const RecommendedProducts = (props) => {
             </div>
           ) : (
             Array.from(Array(8).keys()).map((i) => (
-              <li key={i}>
+              <div
+                key={i}
+                className="min-w-[150px] sm:min-w-[160px] md:min-w-[180px] lg:min-w-[200px] xl:min-w-[250px]"
+              >
                 <SkeletonProductPreview />
-              </li>
+              </div>
             ))
           )}
         </ul>

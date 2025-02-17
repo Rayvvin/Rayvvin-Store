@@ -84,7 +84,7 @@ const CustomDeals = () => {
         />
         <div className="flex flex-col items-center relative bottom-6 text-black">
           <h2 className="text-center text-lg md:text-xl lg:text-2xl font-bold">
-            Rayvvin Flash Sales!
+            Flash Sales!
           </h2>
           <div className="text-center text-sm flex items-center break-keep ">
             Ends in:

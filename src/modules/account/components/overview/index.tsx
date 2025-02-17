@@ -56,7 +56,7 @@ const Overview = ({ orders, customer }: OverviewProps) => {
         <div className=" items-center justify-between gap-x-8 mb-6 flex gap-x-4 py-4 px-4 w-full overflow-x-auto sm:grid sm:grid-cols-2">
           <div className="flex flex-col gap-y-3 sm:gap-y-4 md:gap-y-6 sm:py-4 md:py-6 sm:px-6  shadow-md bg-[#FAFAFA] min-w-[250px] py-4 rounded-lg w-full px-4">
             <div className="flex items-center gap-x-4 w-full">
-              <Avatar src="/rayvvin_pngs/Avatar2.png" size="md" />
+              <Avatar src="/afriomarket_pngs/Avatar2.png" size="md" />
               <div className="flex flex-col w-full">
                 <span className="text-base">{`${customer?.first_name} ${customer?.last_name}`}</span>
                 <p className="text-xs text-[#4E4E4E] w-full">Buyer Account</p>
@@ -167,7 +167,7 @@ const Overview = ({ orders, customer }: OverviewProps) => {
             <div className="flex items-center justify-between gap-x-8 mb-6">
               <div className="flex flex-col gap-y-4 shadow-md min-h-[137px] p-6 rounded-lg w-full">
                 <div className="flex items-center gap-x-4 w-full">
-                  <Avatar src="/rayvvin_pngs/Avatar2.png" size="md" />
+                  <Avatar src="/afriomarket_pngs/Avatar2.png" size="md" />
                   <div className="flex flex-col w-full">
                     <span className="text-base">{`${customer?.first_name} ${customer?.last_name}`}</span>
                     <p className="text-xs text-[#4E4E4E] w-full">

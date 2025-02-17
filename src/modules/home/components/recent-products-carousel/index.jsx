@@ -50,7 +50,7 @@ const RecentProductsCarousel = (props) => {
   }
 
   useEffect(() => {
-    console.log(data)
+    // console.log(data)
     setProducts(data)
   }, [data])
 

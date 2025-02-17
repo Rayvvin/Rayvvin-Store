@@ -127,7 +127,7 @@ const Register = () => {
       <span className="text-center text-gray-700 text-small-regular mt-6">
         Are you a seller?{" "}
         <Link
-          href="https://admin.afriomarkets.com/login"
+          href="/"
           className="text-sm-semi underline"
         >
           Sign In Here

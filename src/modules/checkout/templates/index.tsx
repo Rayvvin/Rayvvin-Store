@@ -5,7 +5,7 @@ import Link from "next/link"
 import CheckoutLoader from "../components/checkout-loader"
 import CheckoutForm from "./checkout-form"
 import CheckoutSummary from "./checkout-summary"
-import Nav from "@modules/layout/templates/nav-rayvvin"
+import Nav from "@modules/layout/templates/nav-new"
 
 import Footer from "@modules/layout/templates/footer"
 

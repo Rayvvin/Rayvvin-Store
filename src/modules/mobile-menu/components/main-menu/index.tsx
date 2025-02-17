@@ -33,13 +33,12 @@ const MainMenu = () => {
             className="flex items-center gap-x-2"
             onClick={setScreenCountry}
           >
-            <ReactCountryFlag countryCode={countryCode || "ng"} svg />
+            <ReactCountryFlag countryCode={countryCode || "gb"} svg />
             <ChevronDown />
           </button>
         </div>
         <div>
           <Image
-            // src="/afriomarket_pngs/afrio market - logo with tagline.png"
             src="/rayvvin_pngs/Logo.png"
             alt={"logo"}
             width={120}

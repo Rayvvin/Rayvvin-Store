@@ -12,8 +12,8 @@ const ProductCarousel = (props) => {
   const { title, categories, products: prods, store } = props
   const { data } = useFeaturedProductsQuery({
     limit: 8,
-    category_id: categories,
-    id: prods && prods.length && prods.map((p) => p.id),
+    // category_id: categories,
+    // id: prods && prods.length && prods.map((p) => p.id),
     // store: store,
   })
   const [products, setProducts] = useState(null)
@@ -51,7 +51,7 @@ const ProductCarousel = (props) => {
   }
 
   useEffect(() => {
-    console.log(data)
+    // console.log(data)
     setProducts(data)
   }, [data])
 

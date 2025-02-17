@@ -1,11 +1,22 @@
 const { withStoreConfig } = require("./store-config")
 const store = require("./store.config.json")
-const nodeExternals = require('webpack-node-externals');
+const nodeExternals = require("webpack-node-externals")
 
 module.exports = withStoreConfig({
   experimental: {
     serverActions: true,
     serverComponentsExternalPackages: ["@medusajs/product"],
+  },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.externals.push({
+        bufferutil: "bufferutil",
+        "utf-8-validate": "utf-8-validate",
+        "supports-color": "supports-color",
+      })
+    }
+
+    return config
   },
   features: store.features,
   reactStrictMode: true,
@@ -17,7 +28,6 @@ module.exports = withStoreConfig({
       "ehhevvujhtrjgcznewzg.supabase.co",
     ],
   },
- 
 })
 
 console.log("next.config.js", JSON.stringify(module.exports, null, 2))

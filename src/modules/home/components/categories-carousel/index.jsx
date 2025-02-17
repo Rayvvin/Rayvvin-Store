@@ -145,87 +145,9 @@ const CategoriesCarousel = (props) => {
 
         <div
           className={` ${
-            category_names && category_names.length > 0
-              ? "grid"
-              : "flex"
+            category_names && category_names.length > 0 ? "grid" : "flex"
           } w-full grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-6 gap-x-4 gap-y-0`}
         >
-          {/* {product_categories && product_categories.length > 0 ? (
-            product_categories?.slice(0, 6).map((c, i) => {
-              if (c.parent_category) {
-                return
-              }
-
-              const children = c.category_children?.map((child) => ({
-                name: child.name,
-                handle: child.handle,
-                id: child.id,
-              }))
-
-              return (
-                <Link
-                  href={`/${c.handle}`}
-                  className="flex flex-col justify-center items-center"
-                >
-                  <div
-                    class="flex flex-col max-w-full w-[132px] aspect-[1/1]  rounded-full shadow-card px-4 py-3 border-1 hover:border-[#008ECC] justify-center items-center"
-                    // style={{ background: discounts[i].bg_color }}
-                    style={{ background: "#F5F5F5" }}
-                  >
-                    <div
-                      style={{
-                        width: "75%",
-                        height: "100%",
-                        position: "relative",
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        display: 'flex'
-                      }}
-                    >
-                      <Image
-                        src={`/rayvvin_pngs/categories/cat_${i + 1}.png`}
-                        alt="Thumbnail"
-                        className="absolute inset-0"
-                        draggable={false}
-                        fill
-                        sizes="100vw"
-                        style={{
-                          objectFit: "contain",
-                          objectPosition: "center",
-                          borderRadius: "9px",
-                        }}
-                      />
-                    </div>
-
-                    
-                  </div>
-                  <span className="inline-flex py-2 px-2 justify-center items-center w-full">
-                    <p
-                      className={clsx(
-                        children && "text-small-semi mb-3 font-normal"
-                      )}
-                    >
-                      <li className="flex flex-col gap-2" key={c.id}>
-                        {c.name}
-                      </li>
-                    </p>
-                  </span>
-                </Link>
-              )
-            })
-          ) : (
-            <div className="inline-flex gap-x-4 flex-auto justfiy-start flex-nowrap mb-4 min-w-80 overflow-x-auto max-w-full w-full">
-              {Array.from(Array(6).keys()).map((i) => (
-                <div
-                  key={i}
-                  className="min-w-[150px] sm:min-w-[160px] md:min-w-[180px] lg:min-w-[200px] xl:min-w-[250px]"
-                >
-                  <SkeletonProductPreview />
-                </div>
-              ))}
-            </div>
-          )} */}
-
           {category_names && category_names.length > 0 ? (
             category_names?.slice(0, 6).map((c, i) => {
               // if (c.parent_category) {
@@ -240,8 +162,9 @@ const CategoriesCarousel = (props) => {
 
               return (
                 <Link
-                  href={`/${c.name}`}
+                  href={`/store`}
                   className="flex flex-col justify-center items-center"
+                  key={i}
                 >
                   <div
                     class="flex flex-col max-w-full w-[78px] sm:w-[120px] aspect-[1/1]  rounded-full shadow-sm px-4 py-3 border-1 hover:border-[#008ECC] justify-center items-center"
@@ -280,7 +203,11 @@ const CategoriesCarousel = (props) => {
                     /> */}
                   </div>
                   <span className="inline-flex py-2 px-2 justify-center items-center w-full">
-                    <p className={"text-small-semi mb-3 font-normal text-[#737373]"}>
+                    <p
+                      className={
+                        "text-small-semi mb-3 font-normal text-[#737373]"
+                      }
+                    >
                       <li className="flex flex-col gap-2" key={c.name}>
                         {c.name}
                       </li>
@@ -290,8 +217,8 @@ const CategoriesCarousel = (props) => {
               )
             })
           ) : (
-            <div className="inline-flex gap-x-4 flex-auto justfiy-start flex-nowrap mb-4 min-w-80 overflow-x-auto max-w-full w-full">
-              {Array.from(Array(6).keys()).map((i) => (
+            <div className="inline-flex gap-x-4 flex-auto justfiy-center items-center flex-nowrap mb-4 min-w-80 overflow-x-hidden max-w-full w-full">
+              {Array.from(Array(5).keys()).map((i) => (
                 <div
                   key={i}
                   className="min-w-[150px] sm:min-w-[160px] md:min-w-[180px] lg:min-w-[200px] xl:min-w-[250px]"

@@ -10,13 +10,13 @@ import { useEffect, useState } from "react"
 import useStores from "@lib/hooks/use-stores"
 
 const FeaturedProducts = (props) => {
-  const [products, setProducts] = useState([])
-  const [categories, setCategories] = useState([])
+  const [products, setProducts] = useState(null)
+  const [categories, setCategories] = useState(null)
   const { store, users, products: prods, categories: cat } = props
   const { data } = useFeaturedProductsQuery({
     limit: 12,
     // category_id: categories,
-    id: prods && prods.length && prods.map((p) => p.id),
+    // id: prods && prods.length && prods.map((p) => p.id),
     // store: store,
   })
 
@@ -80,7 +80,7 @@ const FeaturedProducts = (props) => {
 
         <div className="flex flex-col lg:flex-row justify-between">
           {/* Fliter Type */}
-          {filters
+          {/* {filters
             ? filters.map((filter, i) => {
                 return (
                   <div key={i}>
@@ -126,7 +126,7 @@ const FeaturedProducts = (props) => {
                   </div>
                 )
               })
-            : null}
+            : null} */}
         </div>
 
         <ul

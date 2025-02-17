@@ -14,9 +14,9 @@ import RegionCard from "./regionCard"
 const FeaturedStates = () => {
   const { stores } = useStores()
   const { data } = useFeaturedProductsQuery({ limit: 4 })
-  const [regions, setRegions] = useState([])
-  const [states, setStates] = useState([])
-  const [markets, setMarkets] = useState([])
+  const [regions, setRegions] = useState(null)
+  const [states, setStates] = useState(null)
+  const [markets, setMarkets] = useState(null)
   const [stateName, setStateName] = useState("All")
 
   const filterType = (category) => {
@@ -61,7 +61,9 @@ const FeaturedStates = () => {
 
   useEffect(() => {
     // console.log(states)
-    setRegions(states.slice(0, 8))
+    if (states) {
+      setRegions(states.slice(0, 8))
+    }
   }, [states])
 
   useEffect(() => {

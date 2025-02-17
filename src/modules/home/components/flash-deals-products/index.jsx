@@ -12,7 +12,6 @@ import Image from "next/image"
 import CustomHero from "@modules/home/components/custom-hero"
 import CustomDeals from "../custom-deals"
 
-
 const FlashDealProducts = (props) => {
   const [products, setProducts] = useState(null)
   const [categories, setCategories] = useState([])
@@ -23,7 +22,6 @@ const FlashDealProducts = (props) => {
     // id: prods && prods.length && prods.map((p) => p.id),
     // store: store,
   })
-  
 
   const memoizedData = useMemo(() => data, [data])
 
@@ -72,13 +70,13 @@ const FlashDealProducts = (props) => {
 
   return (
     // <div className="py-12">
-      <div className="content-container py-12">
-        {/* <CustomHero images={["/rayvvin_pngs/Ad banner.png"]} sx={'px-2! mb-4'} pag={false}/> */}
-        
-        <div className="flex flex-row justify-center lg:justify-between xl:justify-between w-full flex-nowrap overflow-x-auto min-w-80 max-w-full">
+    <div className="content-container py-12">
+      {/* <CustomHero images={["/rayvvin_pngs/Ad banner.png"]} sx={'px-2! mb-4'} pag={false}/> */}
+
+      <div className="flex flex-row justify-center lg:justify-between xl:justify-between w-full flex-nowrap overflow-x-auto min-w-80 max-w-full">
         <CustomDeals />
-        
-          {/* <div className="flex flex-col items-center lg:items-start mb-4">
+
+        {/* <div className="flex flex-col items-center lg:items-start mb-4">
             <span className="text-base-regular text-gray-600 mb-0 ms-1 text-center lg:text-start">
               Discover
             </span>
@@ -86,12 +84,11 @@ const FlashDealProducts = (props) => {
               What&apos;s New on {store ? store?.name : null}
             </p>
           </div> */}
-        </div>
+      </div>
 
-        <div className="flex flex-col lg:flex-row justify-between">
-        
-          {/* Fliter Type */}
-          {/* {filters
+      <div className="flex flex-col lg:flex-row justify-between">
+        {/* Fliter Type */}
+        {/* {filters
             ? filters.map((filter, i) => {
                 return (
                   <div key={i}>
@@ -138,38 +135,47 @@ const FlashDealProducts = (props) => {
                 )
               })
             : null} */}
-        </div>
+      </div>
 
-        <ul
-          // className="grid grid-cols-2 small:grid-cols-6 gap-x-4 gap-y-8"
-          className={` ${
-            products && products.length > 0 ? "grid" : "flex"
-          } grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 gap-x-4 gap-y-8`}
-        >
-          {products && products.length > 0 ? (
-            products.toReversed().slice(0, products.length - 2).map((product) => (
+      <ul
+        // className="grid grid-cols-2 small:grid-cols-6 gap-x-4 gap-y-8"
+        className={` ${
+          products && products.length > 0 ? "grid" : "grid"
+        } grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 gap-x-4 gap-y-8`}
+      >
+        {products && products.length > 0 ? (
+          products
+            .toReversed()
+            .slice(0, products.length - 2)
+            .map((product) => (
               <li key={product.id}>
                 <ProductPreview {...product} />
               </li>
             ))
-          ) : products && products.length == 0 ? (
-            <div className="flex w-full items-center justify-center">
-              <p className="text-l font-semi-bold text-gray-700 mb-3">
-                {"No Products Available"}
-              </p>
-            </div>
-          ) : (
-            Array.from(Array(8).keys()).map((i) => (
-              <li key={i}>
-                <SkeletonProductPreview />
-              </li>
-            ))
-          )}
-        </ul>
-        {/* <div className="w-full mt-4 relative flex justify-end items-center">
-          <UnderlineLink href="/store">Explore products</UnderlineLink>
-        </div> */}
-      </div>
+        ) : products && products.length == 0 ? (
+          <div className="flex w-full items-center justify-center">
+            <p className="text-l font-semi-bold text-gray-700 mb-3">
+              {"No Products Available"}
+            </p>
+          </div>
+        ) : (
+          Array.from(Array(8).keys()).map((i) => (
+            <li key={i}>
+              <SkeletonProductPreview />
+            </li>
+          ))
+        )}
+      </ul>
+      {products && products.length > 0 && (
+        <div className="w-full mt-8 relative flex flex-row justify-center items-center text-[#3D8B7A] text-sm gap-x-2">
+          <Link href="/store">See More</Link>
+          <span className="flex flex-row gap-x-0">
+            <FontAwesomeIcon icon={faChevronRight} />
+            <FontAwesomeIcon icon={faChevronRight} />
+          </span>
+        </div>
+      )}
+    </div>
     // </div>
   )
 }

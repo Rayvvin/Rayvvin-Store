@@ -1,7 +1,8 @@
 
 
 import FeaturedProducts from "@modules/home/components/featured-products"
-import HomePage from "@modules/home/components/homepage-rayvvin"
+import HomePage from "@modules/home/components/homepage-new"
+// import HomePage from "@modules/home/components/homepage"
 import FeaturedRegions from "@modules/home/components/featured-regions"
 import FeaturedStates from "@modules/home/components/featured-states"
 import FeaturedStatesMarkets from "@modules/home/components/featured-states-markets"

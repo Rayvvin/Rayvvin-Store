@@ -15,7 +15,6 @@ const FooterNav = () => {
       <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between wrap">
         <div className="flex flex-col space-y-4 w-fit justify-stretch">
           <Link href="/" className="text-xl-semi uppercase">
-            {/* Afriomarkets */}
             <Image
               src="/rayvvin_pngs/Logo (1).png"
               alt={"logo"}
@@ -25,7 +24,10 @@ const FooterNav = () => {
               className="object-cover rounded-lg mx-3"
             />
           </Link>
-          <div className="flex w-9/12 px-2">Our go-to marketplace for quality products, great prices, and fast delivery—all in one place.</div>
+          <div className="flex w-9/12 px-2">
+            Our go-to marketplace for quality products, great prices, and fast
+            delivery—all in one place.
+          </div>
         </div>
         <div className="text-small-regular grid grid-cols-3 sm:grid-cols-4 gap-x-10 md:gap-x-16">
           <div className="flex flex-col gap-y-2">
@@ -41,29 +43,17 @@ const FooterNav = () => {
                 </a>
               </li>
               <li>
-                <a
-                  href="https://admin.afriomarkets.com/#/login"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <a href="/" target="_blank" rel="noreferrer">
                   Best Sellers
                 </a>
               </li>
               <li>
-                <a
-                  href="https://admin.afriomarkets.com/#/login"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <a href="/" target="_blank" rel="noreferrer">
                   Recently Viewed
                 </a>
               </li>
               <li>
-                <a
-                  href="https://admin.afriomarkets.com/#/login"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <a href="/" target="_blank" rel="noreferrer">
                   Popular This Week
                 </a>
               </li>
@@ -216,7 +206,6 @@ const FooterNav = () => {
                   +0323212212212
                 </a>
               </li>
-             
             </ul>
           </div>
         </div>

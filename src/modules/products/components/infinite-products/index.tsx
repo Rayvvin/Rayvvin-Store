@@ -14,10 +14,11 @@ type InfiniteProductsType = {
   params: StoreGetProductsParams,
   store?: any,
   users?: any,
-  products?: any
+  products?: any,
+  title?: any, 
 }
 
-const InfiniteProducts = ({ params, store, users, products }: InfiniteProductsType) => {
+const InfiniteProducts = ({ params, store, users, products, title }: InfiniteProductsType) => {
   const { cart } = useCart()
 
   const { ref, inView } = useInView()
@@ -44,7 +45,7 @@ const InfiniteProducts = ({ params, store, users, products }: InfiniteProductsTy
     }
   }, [cart?.id, params, products])
   
-  console.log(queryParams);
+  // console.log(queryParams);
   
   const { data, hasNextPage, fetchNextPage, isLoading, isFetchingNextPage } =
     useInfiniteQuery(
@@ -66,7 +67,7 @@ const InfiniteProducts = ({ params, store, users, products }: InfiniteProductsTy
 
   return (
     <div className="flex-1 content-container shadow-sm flex flex-col h-full w-full p-4 m-2 mx-0 sm:mx-2 bg-white rounded-md">
-      <span className="text-2xl font-bold p-2 mb-4">Groceries</span>
+      <span className="text-2xl font-bold p-2 mb-4">{title ? title : "Products"}</span>
       <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 gap-x-4 gap-y-8 flex-1">
         {previews.map((p) => (
           <li key={p.id}>

@@ -97,6 +97,7 @@ const OrderOverview = () => {
             {orderStats.map((stat) => {
               return (
                 <div
+                  key={stat.count}
                   className={`flex flex-col gap-y-4 shadow-md bg-[#FAFAFA] p-4 min-h-[137px] w-full rounded-lg justify-center`}
                 >
                   <div className="flex items-stretch justify-center gap-x-4 gap-y-2 w-full flex-col">
@@ -136,6 +137,7 @@ const OrderOverview = () => {
                 {orderStats.map((stat) => {
                   return (
                     <div
+                      key={stat.count}
                       className={`flex flex-col gap-y-4 shadow-md bg-[#FAFAFA] p-4 min-h-[137px] rounded-lg w-full justify-center`}
                     >
                       <div className="flex items-stretch justify-center gap-x-4 gap-y-2 w-full flex-col">

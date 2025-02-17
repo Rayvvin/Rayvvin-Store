@@ -73,7 +73,7 @@ const CustomDealsStats = () => {
             Our Marketplace
           </h2>
           <p className="text-sx md:text-md lg:text-lg">
-            Real time stats of our Rayvvin’s Marketplace
+            Real time stats of our Marketplace
           </p>
         </div>
 
@@ -82,12 +82,12 @@ const CustomDealsStats = () => {
         </div>
       </div>
       {/* Background Image */}
-      <div className="flex">
+      <div className="flex relative w-[30vw] -z-10">
         <Image
-          src="/rayvvin_pngs/pexels-fauxels-3184338 1.png"
+          src="/hero2.jpeg"
           alt="Background Image"
           fill
-          className="object-cover opacity-80 -z-10"
+          className="object-cover opacity-80"
         />
       </div>
 

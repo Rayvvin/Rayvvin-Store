@@ -46,31 +46,7 @@ const HomePage = () => {
       {/* <Hero /> */}
       <div className="lg:container mx-auto box-border xl:px-32 lg:px-24 md:px-4">
         <CustomHero images={["/rayvvin_pngs/Ad banner.png"]} sx={"mb-8"} />
-        {/* <CustomIntro /> */}
-        {/* <MarketplaceGrid /> */}
-
-        {/* <CustomDeals /> */}
-        {/* <RecommendedProducts
-        store={store}
-        // users={users}
-        products={products}
-        categories={categories}
-      /> */}
-        {/* <FeaturedStatesMarkets /> */}
-
-        {/* <CustomDeals /> */}
-
         <CategoriesCarousel title={"Shop Groceries by categories"} />
-
-        {/* <ProductCarousel
-        title={`Best Selling Products from ${store?.name}`}
-        categories={categories}
-        products={products}
-        store={store}
-      /> */}
-        {/* <FeaturedStates /> */}
-
-        {/* <CategoriesHero /> */}
         <FlashDealProducts
           // store={store}
           // users={users}
@@ -84,15 +60,17 @@ const HomePage = () => {
           products={products}
           categories={categories}
         />
-        {/* <FeaturedStores /> */}
-        {/* <FeaturedRegions /> */}
-
-        {/* <ServicesCarousel title=" " /> */}
-        {/* <BrandsCarousel title={'Trending Product For You!'} /> */}
-        {/* <Hero /> */}
-        {/* <FeaturedProducts /> */}
-        {/* <ProductCarousel title={'Hot Deals from Alaba Int’l'} /> */}
       </div>
+
+      {/* <div className="lg:container mx-auto box-border xl:px-20 lg:px-24 md:px-4">
+        <ProductCarousel
+          title={`Best Selling Products`}
+          categories={categories}
+          products={products}
+          // store={store}
+        />
+        <FeaturedStates />
+      </div> */}
       <CustomDealsStats />
       <RecentProductsCarousel
         // title={`Popular Products from ${store?.name}`}

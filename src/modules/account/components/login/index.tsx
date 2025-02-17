@@ -88,7 +88,7 @@ const Login = () => {
       </span>
       <span className="text-center text-gray-700 text-small-regular mt-6">
         Want to become a seller and setup your own store?{" "}
-        <Link href="https://admin.afriomarkets.com/login" className="text-sm-semi underline">
+        <Link href="/" className="text-sm-semi underline">
           Register Here
         </Link>
         .

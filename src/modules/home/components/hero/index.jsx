@@ -109,7 +109,7 @@ const Hero = () => {
 
           <Image
             src="/marrakesh.jpg"
-            // src="/hero2.png"
+            // src="/hero2.jpeg"
             loading="eager"
             priority={true}
             quality={90}

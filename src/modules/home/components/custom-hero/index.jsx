@@ -10,7 +10,7 @@ import { useInView } from "react-intersection-observer"
 import { Splide, SplideSlide } from "splide-nextjs/react-splide"
 import "splide-nextjs/splide/dist/css/themes/splide-default.min.css"
 
-const CustomHero = ({images, sx, pag, }) => {
+const CustomHero = ({ images, sx, pag }) => {
   return (
     <section className={`mt-8 px-6 ${sx}`}>
       <Splide
@@ -25,14 +25,16 @@ const CustomHero = ({images, sx, pag, }) => {
         }}
         aria-label="Afriomarkets Carousel"
       >
-        {images && images.map(img_url => <SplideSlide>
-          <img
-            src={img_url}
-            alt="Market Scene 1"
-            className="w-full h-full object-cover rounded-lg"
-          />
-        </SplideSlide>)}
-        
+        {images &&
+          images.map((img_url) => (
+            <SplideSlide key={img_url}>
+              <img
+                src={img_url}
+                alt="Market Scene 1"
+                className="w-full h-full object-cover rounded-lg"
+              />
+            </SplideSlide>
+          ))}
       </Splide>
     </section>
   )

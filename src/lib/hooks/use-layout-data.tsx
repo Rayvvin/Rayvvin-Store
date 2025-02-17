@@ -90,7 +90,7 @@ const fetchFeaturedProducts = async (
     .then((res) => res.response)
     .then(async ({ products }) => {
       // let { stores } = await getStores()
-      console.log("Showing products", products)
+      // console.log("Showing products", products)
       return products
     })
     .catch((_) => [] as PricedProduct[])
@@ -103,7 +103,7 @@ const fetchFeaturedProducts = async (
           (pv) => pv.id === "variant_01HPESM324K2TRXDD3QG8SR7VT"
         ).length > 0
       ) {
-        console.log(p.variants)
+        // console.log(p.variants)
       }
 
       const variants = p.variants as unknown as CalculatedVariant[]

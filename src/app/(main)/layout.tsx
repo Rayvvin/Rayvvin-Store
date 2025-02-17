@@ -1,6 +1,6 @@
 import Footer from "@modules/layout/templates/footer"
 // import Nav from "@modules/layout/templates/nav"
-import Nav from "@modules/layout/templates/nav-rayvvin"
+import Nav from "@modules/layout/templates/nav-new"
 
 export default function PageLayout({
   children,

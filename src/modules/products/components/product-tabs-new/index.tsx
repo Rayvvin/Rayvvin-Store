@@ -162,11 +162,11 @@ const SellerTab = () => {
     <Tab.Panel className="text-small-regular py-4 flex flex-col gap-y-4">
       <div className="grid grid-cols-1 gap-y-8 border-b border-gray-200 box-border pb-4">
         <div className="flex items-center gap-x-4 w-full">
-          <Avatar src="/rayvvin_pngs/Avatar.png" size="md" />
+          <Avatar src="/afriomarket_pngs/Avatar.png" size="md" />
           <div className="flex flex-col w-full">
             <span className="text-base">Seller Name</span>
             <p className="text-xs text-[#4E4E4E] w-full">
-              No. of Months of selling on Rayvvin.
+              No. of Months of selling on Afriomarkets.
             </p>
           </div>
         </div>

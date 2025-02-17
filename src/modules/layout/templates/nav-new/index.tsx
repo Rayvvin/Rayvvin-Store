@@ -62,10 +62,10 @@ const Nav = () => {
   return (
     <div
       // className="sticky top-0 inset-x-0 z-50 group"
-      className="relative"
-      // className={clsx("sticky top-0 inset-x-0 z-50 group", {
-      //   // "!fixed": isHome,
-      // })}
+      // className="relative"
+      className={clsx("sticky top-0 inset-x-0 z-50 group", {
+        // "!fixed": isHome,
+      })}
     >
       {/* <header
         className={clsx(
@@ -128,7 +128,7 @@ const Nav = () => {
         </div>
         <div className="flex items-center gap-4 text-white">
           <a href="#" className="text-sm hover:underline">
-            Deliver to Uyo, Nigeria
+            Deliver to UK
           </a>
           |
           <a href="#" className="text-sm hover:underline">
@@ -239,7 +239,7 @@ const Nav = () => {
                 </Link>
                 <p className="hidden sm:flex text-gray-500">|</p>
                 <div className="flex flex-row space-x-2 items-center">
-                  <CartDropdown />
+                  <CartDropdown  />
                 </div>
                 <MobileMenu />
               </div>
@@ -261,7 +261,7 @@ const Nav = () => {
         {pathname &&
           pathname === "/" &&
           product_categories?.map((c) => (
-            <span className="inline-flex bg-[#F3F9FB] hover:bg-[#3D8B7A] hover:text-white text-sm me-2 px-4 py-2 rounded-full items-center">
+            <span key={c.id} className="inline-flex bg-[#F3F9FB] hover:bg-[#3D8B7A] hover:text-white text-sm me-2 px-4 py-2 rounded-full items-center">
               {c.name}
               <FontAwesomeIcon icon={faChevronDown} className="ml-2" />
             </span>
