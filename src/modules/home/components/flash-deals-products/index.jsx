@@ -11,6 +11,9 @@ import useStores from "@lib/hooks/use-stores"
 import Image from "next/image"
 import CustomHero from "@modules/home/components/custom-hero"
 import CustomDeals from "../custom-deals"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons"
+import Link from "next/link"
 
 const FlashDealProducts = (props) => {
   const [products, setProducts] = useState(null)
