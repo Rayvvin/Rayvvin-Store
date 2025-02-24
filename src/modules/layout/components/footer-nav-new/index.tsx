@@ -35,7 +35,7 @@ const FooterNav = () => {
             <ul className="grid grid-cols-1 gap-y-2">
               <li>
                 <a
-                  href="https://home.afriomarkets.com"
+                  href="/"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -122,7 +122,7 @@ const FooterNav = () => {
             <ul className="grid grid-cols-1 gap-y-2">
               <li>
                 <a
-                  href="https://home.afriomarkets.com"
+                  href="/"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -131,7 +131,7 @@ const FooterNav = () => {
               </li>
               <li>
                 <a
-                  href="https://admin.afriomarkets.com/#/login"
+                  href="/"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -140,7 +140,7 @@ const FooterNav = () => {
               </li>
               <li>
                 <a
-                  href="https://admin.afriomarkets.com/#/login"
+                  href="/"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -149,7 +149,7 @@ const FooterNav = () => {
               </li>
               <li>
                 <a
-                  href="https://admin.afriomarkets.com/#/login"
+                  href="/"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -158,7 +158,7 @@ const FooterNav = () => {
               </li>
               <li>
                 <a
-                  href="https://admin.afriomarkets.com/#/login"
+                  href="/"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -167,7 +167,7 @@ const FooterNav = () => {
               </li>
               <li>
                 <a
-                  href="https://admin.afriomarkets.com/#/login"
+                  href="/"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -181,7 +181,7 @@ const FooterNav = () => {
             <ul className="grid grid-cols-1 gap-y-2 break-words">
               <li>
                 <a
-                  href="https://home.afriomarkets.com"
+                  href="/"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -190,7 +190,7 @@ const FooterNav = () => {
               </li>
               <li>
                 <a
-                  href="https://admin.afriomarkets.com/#/login"
+                  href="/"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -199,7 +199,7 @@ const FooterNav = () => {
               </li>
               <li>
                 <a
-                  href="https://admin.afriomarkets.com/#/login"
+                  href="/"
                   target="_blank"
                   rel="noreferrer"
                 >
