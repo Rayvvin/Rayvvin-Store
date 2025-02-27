@@ -45,7 +45,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({ product }) => {
               <ImageGallery images={product?.images || []} />
             </div>
             <div
-              className="small:sticky small:top-20 w-full py-8 small:py-0 flex flex-col medium:flex-row gap-y-12"
+              className="small:sticky top-40 md:top-60 w-full py-8 small:py-0 flex flex-col medium:flex-row gap-y-12"
               ref={info}
             >
               {isOnboarding && <ProductOnboardingCta />}
@@ -56,7 +56,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({ product }) => {
           <ProductTabsMain product={product} />
         </div>
 
-        <div className="small:sticky small:top-20 flex flex-col md:flex-row xl:flex-col gap-y-4 !mt-[initial] xl:mt-3">
+        <div className="small:sticky top-40 md:top-60 flex flex-col md:flex-row xl:flex-col gap-y-4 !mt-[initial] xl:mt-3">
           <ProductTabs product={product} />
           <ProductTabs product={product} type="seller" />
         </div>

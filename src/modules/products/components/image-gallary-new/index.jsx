@@ -28,7 +28,7 @@ const ImageGallery = ({ images }) => {
 
   return (
     <div className="flex gap-x-3 sm:gap-x-2 items-start relative ">
-      <div className="flex small:flex flex-col gap-y-4 sticky top-20">
+      <div className="flex small:flex flex-col gap-y-4 sticky top-40 md:top-60">
         {images.map((image, index) => {
           return (
             <button
