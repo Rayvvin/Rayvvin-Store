@@ -44,14 +44,14 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
           name="rate2"
           editing={false}
           starCount={5}
-          value={3}
+          value={0}
           renderStarIcon={() => (
             <i style={{ fontStyle: "normal", fontSize: "15px" }}>★</i>
           )}
           starColor={"#FFB447"}
           // emptyStarColor={"transparent"}
         />
-        {`(${18} customer reviews)`}
+        {`(${0} customer reviews)`}
       </span>
 
       {product.variants.length > 1 && (

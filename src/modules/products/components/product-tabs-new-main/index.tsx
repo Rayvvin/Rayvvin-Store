@@ -17,22 +17,22 @@ type ProductTabsProps = {
 const ProductTabsMain = ({ product }: ProductTabsProps) => {
   const reviews = useMemo(() => {
     return [
-      {
-        stars: 4,
-        user: "Prince Chijioke",
-        user_image: "/rayvvin_pngs/Avatar2.png",
-        date: "Nov 07, 2024",
-        review:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis  euismod commodo porttitor. Vestibulum tincidunt est  arcu, vel viverra lacus condimentum sed. ",
-      },
-      {
-        stars: 3,
-        user: "Prince Chijioke",
-        user_image: "/rayvvin_pngs/Avatar2.png",
-        date: "Nov 09, 2024",
-        review:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis  euismod commodo porttitor. Vestibulum tincidunt est  arcu, vel viverra lacus condimentum sed. ",
-      },
+      // {
+      //   stars: 4,
+      //   user: "Prince Chijioke",
+      //   user_image: "/rayvvin_pngs/Avatar2.png",
+      //   date: "Nov 07, 2024",
+      //   review:
+      //     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis  euismod commodo porttitor. Vestibulum tincidunt est  arcu, vel viverra lacus condimentum sed. ",
+      // },
+      // {
+      //   stars: 3,
+      //   user: "Prince Chijioke",
+      //   user_image: "/rayvvin_pngs/Avatar2.png",
+      //   date: "Nov 09, 2024",
+      //   review:
+      //     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis  euismod commodo porttitor. Vestibulum tincidunt est  arcu, vel viverra lacus condimentum sed. ",
+      // },
     ]
   }, [product])
 

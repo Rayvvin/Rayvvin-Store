@@ -149,7 +149,7 @@ const FlashDealProducts = (props) => {
         {products && products.length > 0 ? (
           products
             .toReversed()
-            .slice(0, products.length - 2)
+            // .slice(0, products.length - 2)
             .map((product) => (
               <li key={product.id}>
                 <ProductPreview {...product} />
