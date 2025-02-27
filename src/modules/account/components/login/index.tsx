@@ -88,7 +88,7 @@ const Login = () => {
       </span>
       <span className="text-center text-gray-700 text-small-regular mt-6">
         Want to become a seller and setup your own store?{" "}
-        <Link href="/" className="text-sm-semi underline">
+        <Link href="https://vendor-portal-7fk0.onrender.com/login" className="text-sm-semi underline">
           Register Here
         </Link>
         .

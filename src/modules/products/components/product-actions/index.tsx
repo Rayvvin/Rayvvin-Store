@@ -6,7 +6,7 @@ import Button from "@modules/common/components/button"
 import OptionSelect from "@modules/products/components/option-select"
 import clsx from "clsx"
 import Link from "next/link"
-import React, { useMemo } from "react"
+import React, { useEffect, useMemo } from "react"
 import { Product } from "types/medusa"
 
 type ProductActionsProps = {
@@ -24,6 +24,12 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
 
     return variantPrice || cheapestPrice || null
   }, [price])
+
+  useEffect(() => {
+    if (product) {
+      console.log(product)
+    }
+  }, [product])
 
   return (
     <div className="flex flex-col gap-y-2">
@@ -57,6 +63,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
       {product.variants.length > 1 && (
         <div className="my-8 flex flex-col gap-y-6">
           {(product.options || []).map((option) => {
+            console.log(product)
             return (
               <div key={option.id}>
                 <OptionSelect
@@ -104,14 +111,22 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
         <Button
           onClick={addToCart}
           className="rounded-md w-full"
-          style={{ background: "#3D8B7A", borderColor: '#3D8B7A', color: 'white' }}
+          style={{
+            background: "#3D8B7A",
+            borderColor: "#3D8B7A",
+            color: "white",
+          }}
         >
           {!inStock ? "Out of stock" : "Add to cart"}
         </Button>
         <Button
           onClick={addToCart}
           className="rounded-md w-full"
-          style={{ background: "white", borderColor: '#3D8B7A', color: "#3D8B7A" }}
+          style={{
+            background: "white",
+            borderColor: "#3D8B7A",
+            color: "#3D8B7A",
+          }}
         >
           {/* {!inStock ? "Out of stock" : "Add to cart"} */}
           Add to Favourites

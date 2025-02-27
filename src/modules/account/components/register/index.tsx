@@ -127,7 +127,7 @@ const Register = () => {
       <span className="text-center text-gray-700 text-small-regular mt-6">
         Are you a seller?{" "}
         <Link
-          href="/"
+          href="https://vendor-portal-7fk0.onrender.com/login"
           className="text-sm-semi underline"
         >
           Sign In Here
