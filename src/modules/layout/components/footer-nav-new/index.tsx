@@ -34,11 +34,7 @@ const FooterNav = () => {
             <span className="text-base-semi">Menu</span>
             <ul className="grid grid-cols-1 gap-y-2">
               <li>
-                <a
-                  href="/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <a href="/" target="_blank" rel="noreferrer">
                   New Arrivals
                 </a>
               </li>
@@ -121,56 +117,23 @@ const FooterNav = () => {
             <span className="text-base-semi">Our Company</span>
             <ul className="grid grid-cols-1 gap-y-2">
               <li>
-                <a
-                  href="/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <a href="/about" target="_blank" rel="noreferrer">
                   About us
                 </a>
               </li>
+
               <li>
-                <a
-                  href="/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Vacancies
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Recently Viewed
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <a href="/privacy" target="_blank" rel="noreferrer">
                   Privacy
                 </a>
               </li>
               <li>
-                <a
-                  href="/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <a href="/returns" target="_blank" rel="noreferrer">
                   Returns Policy
                 </a>
               </li>
               <li>
-                <a
-                  href="/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <a href="/account" target="_blank" rel="noreferrer">
                   Account
                 </a>
               </li>
@@ -180,30 +143,14 @@ const FooterNav = () => {
             <span className="text-base-semi">Contact us</span>
             <ul className="grid grid-cols-1 gap-y-2 break-words">
               <li>
-                <a
-                  href="/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Help@rayvvin.com
+                <a href="/" target="_blank" rel="noreferrer">
+                  admin@rayvvin.com
                 </a>
               </li>
+
               <li>
-                <a
-                  href="/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Support@rayvvin.com
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  +0323212212212
+                <a href="/" target="_blank" rel="noreferrer">
+                  +447
                 </a>
               </li>
             </ul>

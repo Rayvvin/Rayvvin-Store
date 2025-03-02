@@ -8,6 +8,7 @@ import clsx from "clsx"
 import Link from "next/link"
 import React, { useEffect, useMemo } from "react"
 import { Product } from "types/medusa"
+import { Id, ToastContainer, toast } from "react-toastify"
 
 type ProductActionsProps = {
   product: PricedProduct
@@ -26,9 +27,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
   }, [price])
 
   useEffect(() => {
-    if (product) {
-      console.log(product)
-    }
+    console.log(product)
   }, [product])
 
   return (
@@ -109,7 +108,14 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
 
       <div className="flex flex-col sm:flex-row gap-y-4 sm:gap-x-4">
         <Button
-          onClick={addToCart}
+          onClick={() => {
+            addToCart
+            // toast.promise({
+            //   pending: "Promise is pending",
+            //   success: "Promise resolved 👌",
+            //   error: "Promise rejected 🤯",
+            // })
+          }}
           className="rounded-md w-full"
           style={{
             background: "#3D8B7A",

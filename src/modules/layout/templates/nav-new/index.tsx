@@ -128,7 +128,7 @@ const Nav = () => {
         </div>
         <div className="flex items-center gap-4 text-white">
           <a href="#" className="text-sm hover:underline">
-            Deliver to UK
+            Deliveries Supported within the UK
           </a>
           |
           <a href="#" className="text-sm hover:underline">

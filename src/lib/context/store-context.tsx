@@ -95,6 +95,8 @@ export const StoreProvider = ({ children }: StoreProps) => {
       const region = localStorage.getItem(REGION_KEY)
       if (region) {
         return JSON.parse(region) as { regionId: string; countryCode: string }
+      } else {
+        return { regionId: "reg_01JMWCE1MTA2V95CGR8DNH709C", countryCode: "gb" }
       }
     }
     return null
@@ -240,14 +242,14 @@ export const StoreProvider = ({ children }: StoreProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const addItem = ({
+  const addItem = async ({
     variantId,
     quantity,
   }: {
     variantId: string
     quantity: number
   }) => {
-    addLineItem.mutate(
+    await addLineItem.mutateAsync(
       {
         variant_id: variantId,
         quantity: quantity,

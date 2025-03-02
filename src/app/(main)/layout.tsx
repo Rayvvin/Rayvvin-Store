@@ -1,6 +1,7 @@
 import Footer from "@modules/layout/templates/footer"
 // import Nav from "@modules/layout/templates/nav"
 import Nav from "@modules/layout/templates/nav-new"
+import { ToastContainer } from "react-toastify"
 
 export default function PageLayout({
   children,
@@ -12,6 +13,7 @@ export default function PageLayout({
       <Nav />
       {children}
       <Footer />
+      <ToastContainer />
     </main>
   )
 }
