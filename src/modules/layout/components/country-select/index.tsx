@@ -20,6 +20,12 @@ const CountrySelect = () => {
   const [current, setCurrent] = useState<CountryOption | undefined>(undefined)
   const { state, open, close } = useToggleState()
 
+  useEffect(()=>{
+    if(regions){
+      console.log(regions)
+    }
+  },[regions])
+
   const options: CountryOption[] | undefined = useMemo(() => {
     return regions
       ?.map((r) => {

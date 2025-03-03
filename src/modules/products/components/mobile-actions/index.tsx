@@ -124,7 +124,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({ product, show }) => {
                     </button>
                   </div>
                   <div className="bg-white px-6 py-12">
-                    {product.variants.length > 1 && (
+                    {product.variants.length >= 1 && (
                       <div className="flex flex-col gap-y-6">
                         {(product.options || []).map((option) => {
                           return (

@@ -26,9 +26,9 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
     return variantPrice || cheapestPrice || null
   }, [price])
 
-  useEffect(() => {
-    console.log(product)
-  }, [product])
+  // useEffect(() => {
+  //   console.log(product)
+  // }, [product])
 
   return (
     <div className="flex flex-col gap-y-2">
@@ -59,10 +59,10 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
         {`(${0} customer reviews)`}
       </span>
 
-      {product.variants.length > 1 && (
+      {product.variants.length >= 1 && (
         <div className="my-8 flex flex-col gap-y-6">
           {(product.options || []).map((option) => {
-            console.log(product)
+            // console.log(product)
             return (
               <div key={option.id}>
                 <OptionSelect
@@ -109,12 +109,18 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
       <div className="flex flex-col sm:flex-row gap-y-4 sm:gap-x-4">
         <Button
           onClick={() => {
-            addToCart
-            // toast.promise({
-            //   pending: "Promise is pending",
-            //   success: "Promise resolved 👌",
-            //   error: "Promise rejected 🤯",
+            // toast("🦄 Wow so easy!", {
+            //   position: "bottom-right",
+            //   autoClose: 5000,
+            //   hideProgressBar: false,
+            //   closeOnClick: false,
+            //   pauseOnHover: true,
+            //   draggable: true,
+            //   progress: undefined,
+            //   theme: "light",
+            //   // transition: Bounce,
             // })
+            addToCart
           }}
           className="rounded-md w-full"
           style={{

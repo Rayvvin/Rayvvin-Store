@@ -24,12 +24,17 @@ const DEBUG = false
 export async function getProductByHandle(handle: string) {
   if (PRODUCT_MODULE_ENABLED) {
     DEBUG && console.log("PRODUCT_MODULE_ENABLED")
-    const data = await fetch(`${API_BASE_URL}/api/products/${handle}`)
+    const data = await fetch(`${API_BASE_URL}/api/products/${handle}`, {
+      next: {
+        tags: ["products, variants"],
+      },
+    })
       .then((res) => res.json())
       .catch((err) => {
         throw err
       })
 
+    // console.log("Right here dummy 1", data)
     return data
   }
 
@@ -43,6 +48,8 @@ export async function getProductByHandle(handle: string) {
     .catch((err) => {
       throw err
     })
+
+  // console.log("Right here dummy 2", products)
 
   return {
     products,
@@ -104,7 +111,7 @@ export async function getProductsList({
         throw err
       })
 
-      // console.log(products)
+    // console.log(products)
 
     return {
       response: { products, count },
@@ -248,9 +255,7 @@ export async function getProductsListSupabase({
 
     if (variantMoneyAmountsError) throw new Error(variantMoneyAmountsError)
 
-    const moneyAmountIds = variantMoneyAmounts.map(
-      (vma) => vma.money_amount_id
-    )
+    const moneyAmountIds = variantMoneyAmounts.map((vma) => vma.money_amount_id)
     const { data: moneyAmounts, error: moneyAmountsError } =
       await supabaseRequest("read", "money_amount", {
         filters: [{ column: "id", operator: "in", value: moneyAmountIds }],
@@ -263,9 +268,7 @@ export async function getProductsListSupabase({
       ...variant,
       prices: variantMoneyAmounts
         .filter((vma) => vma.variant_id === variant.id)
-        .map((vma) =>
-          moneyAmounts.find((ma) => ma.id === vma.money_amount_id)
-        ),
+        .map((vma) => moneyAmounts.find((ma) => ma.id === vma.money_amount_id)),
     }))
 
     // Map variants to their respective products
