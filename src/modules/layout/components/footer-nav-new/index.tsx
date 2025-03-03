@@ -5,6 +5,12 @@ import { useCollections, useProductCategories } from "medusa-react"
 import Link from "next/link"
 import CountrySelect from "../country-select"
 import Image from "next/image"
+import {
+  FacebookIcon,
+  LinkedInIcon,
+  TelegramIcon,
+  TwitterIcon,
+} from "@modules/SVGIcons/SVGicons"
 
 const FooterNav = () => {
   const { collections } = useCollections()
@@ -31,27 +37,27 @@ const FooterNav = () => {
         </div>
         <div className="text-small-regular grid grid-cols-3 sm:grid-cols-3 gap-x-10 md:gap-x-16">
           {/* <div className="flex flex-col gap-y-2">
-            <span className="text-base-semi">Menu</span>
+            <span className="text-base-semi">Socials</span>
             <ul className="grid grid-cols-1 gap-y-2">
               <li>
-                <a href="/" target="_blank" rel="noreferrer">
-                  New Arrivals
-                </a>
+                <Link href={"/"}>
+                  <FacebookIcon />
+                </Link>
               </li>
               <li>
-                <a href="/" target="_blank" rel="noreferrer">
-                  Best Sellers
-                </a>
+                <Link href={"/"}>
+                  <TwitterIcon />
+                </Link>
               </li>
               <li>
-                <a href="/" target="_blank" rel="noreferrer">
-                  Recently Viewed
-                </a>
+                <Link href={"/"}>
+                  <LinkedInIcon />
+                </Link>
               </li>
               <li>
-                <a href="/" target="_blank" rel="noreferrer">
-                  Popular This Week
-                </a>
+                <Link href={"/"}>
+                  <TelegramIcon />
+                </Link>
               </li>
             </ul>
           </div> */}
@@ -161,6 +167,28 @@ const FooterNav = () => {
         <span className="text-xsmall-regular text-gray-500">
           © Copyright 2024 Rayvvin
         </span>
+        <ul className="flex flex-row gap-x-4">
+          <li>
+            <Link href={"/"}>
+              <FacebookIcon />
+            </Link>
+          </li>
+          <li>
+            <Link href={"/"}>
+              <TwitterIcon />
+            </Link>
+          </li>
+          <li>
+            <Link href={"/"}>
+              <LinkedInIcon />
+            </Link>
+          </li>
+          <li>
+            <Link href={"/"}>
+              <TelegramIcon />
+            </Link>
+          </li>
+        </ul>
         <div className="min-w-[316px] flex xsmall:justify-end">
           <CountrySelect />
         </div>
