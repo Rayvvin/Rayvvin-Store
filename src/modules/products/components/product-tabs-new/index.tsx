@@ -6,7 +6,44 @@ import FastDelivery from "@modules/common/icons/fast-delivery"
 import Refresh from "@modules/common/icons/refresh"
 import { Avatar } from "@nextui-org/react"
 import clsx from "clsx"
-import { useMemo } from "react"
+import { useEffect, useMemo, useState } from "react"
+import { createClient } from "@supabase/supabase-js"
+const supabaseUrl = process.env.NEXT_PUBLIC_BASE_URL
+const supabaseKey = process.env.NEXT_PUBLIC_ANON_KEY
+if (!supabaseUrl || !supabaseKey) {
+  throw new Error("SUPABASE_URL and KEY are required")
+}
+
+const supabase = createClient(supabaseUrl, supabaseKey)
+const fetchProductAndStore = async (productId: string) => {
+  const { data: productData, error: productError } = await supabase
+    .from("product")
+    .select("*")
+    .eq("id", productId)
+    .single()
+
+  if (productError) {
+    console.error("Error fetching product:", productError)
+    return null
+  }
+
+  // console.log(productData)
+
+  const { data: storeData, error: storeError } = await supabase
+    .from("store")
+    .select("*")
+    .eq("id", productData.store_id)
+    .single()
+
+  if (storeError) {
+    console.error("Error fetching store:", storeError)
+    return null
+  }
+
+  // console.log(storeData)
+
+  return { product: productData, store: storeData }
+}
 
 type ProductTabsProps = {
   product: PricedProduct
@@ -28,7 +65,7 @@ const ProductTabs = ({ product, type }: ProductTabsProps) => {
         return [
           {
             label: "Seller Information",
-            component: <SellerTab />,
+            component: <SellerTab product={product} />,
           },
         ]
       default:
@@ -157,16 +194,27 @@ const DeliveryReturnsTab = () => {
   )
 }
 
-const SellerTab = () => {
+const SellerTab = ({ product }) => {
+  const [store, setStore] = useState<any>(null)
+
+  useEffect(() => {
+    const fetchStoreData = async () => {
+      const storeData = await fetchProductAndStore(product.id)
+      setStore(storeData)
+    }
+
+    fetchStoreData()
+  }, [product])
+
   return (
     <Tab.Panel className="text-small-regular py-4 flex flex-col gap-y-4">
       <div className="grid grid-cols-1 gap-y-8 border-b border-gray-200 box-border pb-4">
         <div className="flex items-center gap-x-4 w-full">
           <Avatar src="/rayvvin_pngs/Avatar.png" size="md" />
           <div className="flex flex-col w-full">
-            <span className="text-base">Seller Name</span>
+            <span className="text-base">{store && store.store ? store?.store?.name : ""}</span>
             <p className="text-xs text-[#4E4E4E] w-full">
-              No. of Months of selling on Rayvvin.
+              Number of Months Selling on Rayvvin: {store && store.store ? Math.floor((new Date().getTime() - new Date(store.store.created_at).getTime()) / (1000 * 60 * 60 * 24 * 30)) : "-"}
             </p>
           </div>
         </div>
