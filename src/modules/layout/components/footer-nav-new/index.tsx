@@ -29,8 +29,8 @@ const FooterNav = () => {
             delivery—all in one place.
           </div>
         </div>
-        <div className="text-small-regular grid grid-cols-3 sm:grid-cols-4 gap-x-10 md:gap-x-16">
-          <div className="flex flex-col gap-y-2">
+        <div className="text-small-regular grid grid-cols-3 sm:grid-cols-3 gap-x-10 md:gap-x-16">
+          {/* <div className="flex flex-col gap-y-2">
             <span className="text-base-semi">Menu</span>
             <ul className="grid grid-cols-1 gap-y-2">
               <li>
@@ -54,7 +54,7 @@ const FooterNav = () => {
                 </a>
               </li>
             </ul>
-          </div>
+          </div> */}
           {product_categories && (
             <div className="flex flex-col gap-y-2">
               <span className="text-base-semi">Categories</span>

@@ -31,6 +31,12 @@ const CartDropdown = () => {
             >
               {`Cart (${totalItems})`}
             </a>
+            <a
+              href="#"
+              className="hover:underline text-sm flex sm:hidden break-keep"
+            >
+              {`(${totalItems})`}
+            </a>
           </Link>
         </Popover.Button>
         <Transition

@@ -44,7 +44,7 @@ const ProductPreview = ({
               name="rate2"
               editing={false}
               starCount={5}
-              value={3}
+              value={0}
               renderStarIcon={() => (
                 <i style={{ fontStyle: "normal", fontSize: "13px" }}>★</i>
               )}

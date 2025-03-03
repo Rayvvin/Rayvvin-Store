@@ -96,7 +96,7 @@ export const StoreProvider = ({ children }: StoreProps) => {
       const region = localStorage.getItem(REGION_KEY)
       if (region) {
         return JSON.parse(region) as { regionId: string; countryCode: string }
-      } 
+      }
       // else {
       //   setRegion("reg_01JMWCE1MTA2V95CGR8DNH709C", "gb")
       //   return { regionId: "reg_01JMWCE1MTA2V95CGR8DNH709C", countryCode: "gb" }
@@ -191,7 +191,7 @@ export const StoreProvider = ({ children }: StoreProps) => {
 
     const savedRegion = getRegion()
 
-    createCart.mutate(
+    createCart.mutateAsync(
       {
         region_id: savedRegion?.regionId,
       },
@@ -270,7 +270,6 @@ export const StoreProvider = ({ children }: StoreProps) => {
         }
       )
 
-    console.log("Adding to Cart")
     toast.promise(addLineItemPromise, {
       pending: "Adding to Cart",
       success: "Product Added to Cart",
@@ -279,20 +278,27 @@ export const StoreProvider = ({ children }: StoreProps) => {
   }
 
   const deleteItem = (lineId: string) => {
-    removeLineItem.mutate(
-      {
-        lineId,
-      },
-      {
-        onSuccess: ({ cart }) => {
-          setCart(cart)
-          storeCart(cart.id)
+    const removeLineItemPromise = () =>
+      removeLineItem.mutateAsync(
+        {
+          lineId,
         },
-        onError: (error) => {
-          handleError(error)
-        },
-      }
-    )
+        {
+          onSuccess: ({ cart }) => {
+            setCart(cart)
+            storeCart(cart.id)
+          },
+          onError: (error) => {
+            handleError(error)
+          },
+        }
+      )
+
+    toast.promise(removeLineItemPromise, {
+      pending: "Removing from Cart",
+      success: "Product Removed from Cart",
+      error: "Removing to Cart Failed",
+    })
   }
 
   const updateItem = ({
@@ -302,21 +308,27 @@ export const StoreProvider = ({ children }: StoreProps) => {
     lineId: string
     quantity: number
   }) => {
-    adjustLineItem.mutate(
-      {
-        lineId,
-        quantity,
-      },
-      {
-        onSuccess: ({ cart }) => {
-          setCart(cart)
-          storeCart(cart.id)
+    const adjustLineItemPromise = () =>
+      adjustLineItem.mutateAsync(
+        {
+          lineId,
+          quantity,
         },
-        onError: (error) => {
-          handleError(error)
-        },
-      }
-    )
+        {
+          onSuccess: ({ cart }) => {
+            setCart(cart)
+            storeCart(cart.id)
+          },
+          onError: (error) => {
+            handleError(error)
+          },
+        }
+      )
+    toast.promise(adjustLineItemPromise, {
+      pending: "Updating Cart Item",
+      success: "Cart Item Updated",
+      error: "Updating Cart Item Failed",
+    })
   }
 
   return (

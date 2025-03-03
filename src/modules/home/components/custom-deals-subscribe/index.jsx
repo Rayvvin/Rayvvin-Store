@@ -1,15 +1,58 @@
 "use client"
 
 import UnderlineLink from "@modules/common/components/underline-link"
+import { Button } from "@nextui-org/react"
+import { createClient } from "@supabase/supabase-js"
 import { useInfiniteQuery } from "@tanstack/react-query"
 import { useCart } from "medusa-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { useInView } from "react-intersection-observer"
+import { toast } from "react-toastify"
 import { Splide, SplideSlide } from "splide-nextjs/react-splide"
 import "splide-nextjs/splide/dist/css/themes/splide-default.min.css"
 
+const supabaseUrl = process.env.NEXT_PUBLIC_BASE_URL
+const supabaseKey = process.env.NEXT_PUBLIC_ANON_KEY
+if (!supabaseUrl || !supabaseKey) {
+  throw new Error("SUPABASE_URL and KEY are required")
+}
+
+const supabase = createClient(supabaseUrl, supabaseKey)
+
+const handleSubscribe = async (firstName, email) => {
+  const { data: existingUser, error: fetchError } = await supabase
+    .from("subscription")
+    .select("*")
+    .eq("email", email)
+    .maybeSingle()
+
+  if (fetchError) {
+    console.error("Error checking subscription:", fetchError)
+    return
+  }
+
+  if (existingUser) {
+    // console.log("User already subscribed")
+    toast("You're already subscribed", { type: "info" })
+    // Show toast notification for already subscribed
+    return
+  }
+
+  const { data, error } = await supabase
+    .from("subscription")
+    .insert([{ first_name: firstName, email: email }])
+
+  if (error) {
+    // console.error("Error subscribing:", error)
+    toast("Error subscribing", { type: "error" })
+  } else {
+    // console.log("Successfully subscribed:", data)
+    toast("Successfully subscribed", { type: "success" })
+    // Show toast notification for successful subscription
+  }
+}
 const CountdownTimer = ({ timeString, style }) => {
   const [timeLeft, setTimeLeft] = useState(0)
 
@@ -72,8 +115,15 @@ const CustomDealsSubscribe = () => {
         />
       </div> */}
 
-      {/* Content */}
-      <div className="relative z-10 flex flex-col items-center p-6 md:p-4 lg:p-8 space-y-4 h-[400px] px-4 md:px-8 lg:px-10 xl:px-20 space-x-1 lg:space-x-4 items-center justify-center">
+      <form
+        onSubmit={async (e) => {
+          e.preventDefault()
+          const firstName = e.target.firstName.value
+          const email = e.target.email.value
+          await handleSubscribe(firstName, email)
+        }}
+        className="relative z-10 flex flex-col items-center p-6 md:p-4 lg:p-8 space-y-4 h-[400px] px-4 md:px-8 lg:px-10 xl:px-20 space-x-1 lg:space-x-4 items-center justify-center"
+      >
         <div className="flex flex-col w-full sm:w-9/12 space-y-6 items-center justify-center">
           <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold">
             Subscribe to our newsletter
@@ -88,23 +138,24 @@ const CustomDealsSubscribe = () => {
         <div className="flex flex-col sm:flex-row space-x-4 sm:space-x-6 gap-y-4 mt-8 justify-start items-center sm:justify-center">
           <input
             type="text"
+            name="firstName"
             placeholder="First Name"
-            class="py-2 px-4 ml-4 rounded-md bg-transparent border border-white text-white placeholder-white text-xs sm:text-base"
+            className="py-2 px-4 ml-4 rounded-md bg-transparent border border-white text-white placeholder-white text-xs sm:text-base"
           />
           <input
             type="text"
+            name="email"
             placeholder="Email Address"
-            class="py-2 px-4 rounded-md bg-transparent border border-white text-white placeholder-white text-xs sm:text-base"
-
+            className="py-2 px-4 rounded-md bg-transparent border border-white text-white placeholder-white text-xs sm:text-base"
           />
-          <Link
-            href="/categories"
+          <Button
+            type="submit"
             className="inline-flex bg-[#3D8B7A] hover:bg-green-800 text-white py-2 px-4 rounded-lg break-keep transition items-center w-fit"
           >
             Subscribe Now!
-          </Link>
+          </Button>
         </div>
-      </div>
+      </form>
 
       {/* Overlay Icons */}
       {/* <div className="absolute right-0 bottom-0 flex flex-col items-center space-y-2 p-4">

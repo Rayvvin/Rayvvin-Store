@@ -13,7 +13,6 @@ export default function PageLayout({
       <Nav />
       {children}
       <Footer />
-      <ToastContainer />
     </main>
   )
 }

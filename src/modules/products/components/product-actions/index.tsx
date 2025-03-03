@@ -106,21 +106,13 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
         )}
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-y-4 sm:gap-x-4">
+      <div className="sm:grid-cols-2 gap-y-4 sm:gap-x-4 grid grid-cols-1">
         <Button
           onClick={() => {
-            // toast("🦄 Wow so easy!", {
-            //   position: "bottom-right",
-            //   autoClose: 5000,
-            //   hideProgressBar: false,
-            //   closeOnClick: false,
-            //   pauseOnHover: true,
-            //   draggable: true,
-            //   progress: undefined,
-            //   theme: "light",
-            //   // transition: Bounce,
-            // })
+            // console.log("Adding to cart");
+
             addToCart
+            // console.log(product)
           }}
           className="rounded-md w-full"
           style={{
@@ -131,7 +123,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
         >
           {!inStock ? "Out of stock" : "Add to cart"}
         </Button>
-        <Button
+        {/* <Button
           onClick={addToCart}
           className="rounded-md w-full"
           style={{
@@ -140,9 +132,9 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
             color: "#3D8B7A",
           }}
         >
-          {/* {!inStock ? "Out of stock" : "Add to cart"} */}
+          {!inStock ? "Out of stock" : "Add to cart"}
           Add to Favourites
-        </Button>
+        </Button> */}
       </div>
     </div>
   )
