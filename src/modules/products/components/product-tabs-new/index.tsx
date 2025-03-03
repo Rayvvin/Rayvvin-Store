@@ -8,7 +8,7 @@ import { Avatar } from "@nextui-org/react"
 import clsx from "clsx"
 import { useEffect, useMemo, useState } from "react"
 import { createClient } from "@supabase/supabase-js"
-const supabaseUrl = process.env.NEXT_PUBLIC_BASE_URL
+const supabaseUrl = process.env.NEXT_PUBLIC_VITE_BASE_URL
 const supabaseKey = process.env.NEXT_PUBLIC_ANON_KEY
 if (!supabaseUrl || !supabaseKey) {
   throw new Error("SUPABASE_URL and KEY are required")

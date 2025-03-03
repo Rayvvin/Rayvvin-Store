@@ -13,7 +13,7 @@ import { toast } from "react-toastify"
 import { Splide, SplideSlide } from "splide-nextjs/react-splide"
 import "splide-nextjs/splide/dist/css/themes/splide-default.min.css"
 
-const supabaseUrl = process.env.NEXT_PUBLIC_BASE_URL
+const supabaseUrl = process.env.NEXT_PUBLIC_VITE_BASE_URL
 const supabaseKey = process.env.NEXT_PUBLIC_ANON_KEY
 if (!supabaseUrl || !supabaseKey) {
   throw new Error("SUPABASE_URL and KEY are required")
