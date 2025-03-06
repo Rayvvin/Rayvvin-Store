@@ -108,12 +108,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
 
       <div className="sm:grid-cols-2 gap-y-4 sm:gap-x-4 grid grid-cols-1">
         <Button
-          onClick={() => {
-            // console.log("Adding to cart");
-
-            addToCart
-            // console.log(product)
-          }}
+          onClick={addToCart}
           className="rounded-md w-full"
           style={{
             background: "#3D8B7A",

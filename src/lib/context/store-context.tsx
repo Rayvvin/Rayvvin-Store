@@ -252,29 +252,52 @@ export const StoreProvider = ({ children }: StoreProps) => {
     variantId: string
     quantity: number
   }) => {
-    const addLineItemPromise = () =>
-      addLineItem.mutateAsync(
-        {
-          variant_id: variantId,
-          quantity: quantity,
-        },
-        {
-          onSuccess: ({ cart }) => {
-            setCart(cart)
-            storeCart(cart.id)
-            timedOpen()
-          },
-          onError: (error) => {
-            handleError(error)
-          },
-        }
-      )
+    // const addLineItemPromise = () =>
+    //   addLineItem.mutateAsync(
+    //     {
+    //       variant_id: variantId,
+    //       quantity: quantity,
+    //     },
+    //     {
+    //       onSuccess: ({ cart }) => {
+    //         setCart(cart)
+    //         storeCart(cart.id)
+    //         timedOpen()
+    //       },
+    //       onError: (error) => {
+    //         handleError(error)
+    //       },
+    //     }
+    //   )
 
-    toast.promise(addLineItemPromise, {
-      pending: "Adding to Cart",
-      success: "Product Added to Cart",
-      error: "Adding to Cart Failed",
-    })
+    // toast.promise(addLineItemPromise, {
+    //   pending: "Adding to Cart",
+    //   success: "Product Added to Cart",
+    //   error: "Adding to Cart Failed",
+    // })
+
+    addLineItem.mutateAsync(
+      {
+        variant_id: variantId,
+        quantity: quantity,
+      },
+      {
+        onSuccess: ({ cart }) => {
+          toast("Product Added to Cart", {
+            type: "success",
+          })
+          setCart(cart)
+          storeCart(cart.id)
+          timedOpen()
+        },
+        onError: (error) => {
+          toast("Add to Cart Failed", {
+            type: "error",
+          })
+          handleError(error)
+        },
+      }
+    )
   }
 
   const deleteItem = (lineId: string) => {

@@ -122,7 +122,6 @@ export const ProductProvider = ({
   }
 
   const addToCart = () => {
-    // console.log('Here', variant)
     if (variant) {
       addItem({
         variantId: variant.id,
