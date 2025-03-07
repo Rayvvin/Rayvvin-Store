@@ -23,7 +23,7 @@ const CustomHero = ({ images, sx, pag }) => {
           pagination: pag || true,
           speed: 800,
         }}
-        aria-label="Afriomarkets Carousel"
+        aria-label="Rayvvin Carousel"
       >
         {images &&
           images.map((img_url) => (
