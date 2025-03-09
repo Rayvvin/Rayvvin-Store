@@ -11,6 +11,9 @@ import {
   TelegramIcon,
   TwitterIcon,
 } from "@modules/SVGIcons/SVGicons"
+import { faUser } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faInstagram, faInstagramSquare } from "@fortawesome/free-brands-svg-icons"
 
 const FooterNav = () => {
   const { collections } = useCollections()
@@ -175,7 +178,8 @@ const FooterNav = () => {
           </li>
           <li>
             <Link href={"/"}>
-              <TwitterIcon />
+              {/* <TwitterIcon /> */}
+              <FontAwesomeIcon icon={faInstagramSquare} color="#fff" />
             </Link>
           </li>
           <li>

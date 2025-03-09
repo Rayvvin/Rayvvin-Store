@@ -13,7 +13,7 @@ export default function About() {
         <p className="mb-4">
           Welcome to <em>Rayvvin</em>, your premier e-commerce platform
           dedicated to connecting African vendors with African customers. Based
-          in the United Kingdom, Rayvvin is more than just a marketplace—it’s a
+          in the United Kingdom, Rayvvin is more than just a marketplace—it's a
           movement to empower small and medium-sized African businesses by
           providing them with a global platform to showcase their products and
           services.
