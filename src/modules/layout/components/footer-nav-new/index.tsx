@@ -171,18 +171,18 @@ const FooterNav = () => {
           © Copyright 2024 Rayvvin
         </span>
         <ul className="flex flex-row gap-x-4">
-          <li>
+          {/* <li>
             <Link href={"/"}>
               <FacebookIcon />
             </Link>
-          </li>
+          </li> */}
           <li>
-            <Link href={"/"}>
+            <Link href={"https://www.instagram.com/therayvvinstore"}>
               {/* <TwitterIcon /> */}
-              <FontAwesomeIcon icon={faInstagramSquare} color="#fff" />
+              <FontAwesomeIcon icon={faInstagramSquare} color="#fff" fontSize={32} />
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link href={"/"}>
               <LinkedInIcon />
             </Link>
@@ -191,7 +191,7 @@ const FooterNav = () => {
             <Link href={"/"}>
               <TelegramIcon />
             </Link>
-          </li>
+          </li> */}
         </ul>
         <div className="min-w-[316px] flex xsmall:justify-end">
           <CountrySelect />
