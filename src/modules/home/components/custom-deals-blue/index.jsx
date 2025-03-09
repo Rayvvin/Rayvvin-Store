@@ -92,9 +92,13 @@ const CustomDealsBlue = () => {
           <div className="flex w-[171px] text-white text-[14px] sm:text-[20px]">
             On all Groceries Top Deals and Flash sales.
           </div>
-          <div className="flex bg-[#FFB447] rounded-lg w-[171px] text-white text-[15px] text-[#082621] p-2">
+
+          <a
+            href="/store"
+            className="flex bg-[#FFB447] rounded-lg w-[171px] text-white text-[15px] text-[#082621] p-2"
+          >
             Start shopping
-          </div>
+          </a>
         </div>
 
         <div className="flex px-2">
