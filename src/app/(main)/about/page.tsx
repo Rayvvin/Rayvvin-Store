@@ -13,7 +13,7 @@ export default function About() {
         <p className="mb-4">
           Welcome to <em>Rayvvin</em>, your premier e-commerce platform
           dedicated to connecting African vendors with African customers. Based
-          in the United Kingdom, Rayvvin is more than just a marketplace—it's a
+          in the United Kingdom, Rayvvin is more than just a marketplace—it&apos;s a
           movement to empower small and medium-sized African businesses by
           providing them with a global platform to showcase their products and
           services.
@@ -41,7 +41,7 @@ export default function About() {
         <h1 className="text-2xl font-bold mb-4">About Your Account</h1>
         <p className="mb-4">
           Creating an account on Rayvvin is your gateway to a seamless shopping
-          experience. Here’s what you need to know:
+          experience. Here&apos;s what you need to know:
         </p>
         <p className="mb-4">
           <strong>1. Account Creation:</strong>

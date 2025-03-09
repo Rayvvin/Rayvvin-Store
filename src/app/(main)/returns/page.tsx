@@ -21,7 +21,7 @@ export default function Returns() {
     <ul className="list-disc list-inside mb-4">
       <li>Perishable goods (e.g., groceries).</li>
       <li>Personalized or custom-made items.</li>
-      <li>Items marked as "final sale."</li>
+      <li>Items marked as &quot; final sale. &quot;</li>
     </ul>
     <p className="mb-4"><strong>3. Return Process:</strong></p>
     <ul className="list-disc list-inside mb-4">
