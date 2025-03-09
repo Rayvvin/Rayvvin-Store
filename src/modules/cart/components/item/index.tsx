@@ -66,14 +66,14 @@ const Item = ({ item, region }: ItemProps) => {
               name="rate2"
               editing={false}
               starCount={5}
-              value={3}
+              value={0}
               renderStarIcon={() => (
                 <i style={{ fontStyle: "normal", fontSize: "15px" }}>★</i>
               )}
               starColor={"#FFB447"}
               // emptyStarColor={"transparent"}
             />
-            <span className="text-[#A9A9A9]">{`(${18} reviews)`}</span>
+            <span className="text-[#A9A9A9]">{`(${0} reviews)`}</span>
           </div>
         </div>
 

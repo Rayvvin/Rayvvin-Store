@@ -94,7 +94,7 @@ const ItemsTableTemplate = ({ items, region }: ItemsTableTemplateProps) => {
                                   name="rate2"
                                   editing={false}
                                   starCount={5}
-                                  value={3}
+                                  value={0}
                                   renderStarIcon={() => (
                                     <i
                                       style={{
@@ -108,7 +108,7 @@ const ItemsTableTemplate = ({ items, region }: ItemsTableTemplateProps) => {
                                   starColor={"#FFB447"}
                                   // emptyStarColor={"transparent"}
                                 />
-                                <p className="!text-xs">{`(${18} reviews)`}</p>
+                                <p className="!text-xs">{`(${0} reviews)`}</p>
                               </span>
                             </div>
                           </div>
