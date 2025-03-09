@@ -139,7 +139,7 @@ const FooterNav = () => {
                 </a>
               </li>
               <li>
-                <a href="/account" target="_blank" rel="noreferrer">
+                <a href="/about" target="_blank" rel="noreferrer">
                   Account
                 </a>
               </li>
