@@ -13,7 +13,11 @@ import {
 } from "@modules/SVGIcons/SVGicons"
 import { faUser } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faInstagram, faInstagramSquare } from "@fortawesome/free-brands-svg-icons"
+import {
+  faInstagram,
+  faInstagramSquare,
+  faTiktok,
+} from "@fortawesome/free-brands-svg-icons"
 
 const FooterNav = () => {
   const { collections } = useCollections()
@@ -171,15 +175,29 @@ const FooterNav = () => {
           © Copyright 2024 Rayvvin
         </span>
         <ul className="flex flex-row gap-x-4">
-          {/* <li>
-            <Link href={"/"}>
+          <li>
+            <Link
+              href={
+                "https://web.facebook.com/people/The-Rayvvin-Store/61551347613696/"
+              }
+            >
               <FacebookIcon />
             </Link>
-          </li> */}
+          </li>
           <li>
             <Link href={"https://www.instagram.com/therayvvinstore"}>
               {/* <TwitterIcon /> */}
-              <FontAwesomeIcon icon={faInstagramSquare} color="#fff" fontSize={32} />
+              <FontAwesomeIcon
+                icon={faInstagramSquare}
+                color="#fff"
+                fontSize={32}
+              />
+            </Link>
+          </li>
+          <li>
+            <Link href={"https://www.tiktok.com/@therayvvinstore"}>
+              {/* <TwitterIcon /> */}
+              <FontAwesomeIcon icon={faTiktok} color="#fff" fontSize={32} />
             </Link>
           </li>
           {/* <li>
