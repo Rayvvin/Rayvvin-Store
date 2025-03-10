@@ -68,7 +68,7 @@ const FooterNav = () => {
               </li>
             </ul>
           </div> */}
-          {product_categories && (
+          {/* {product_categories && (
             <div className="flex flex-col gap-y-2">
               <span className="text-base-semi">Categories</span>
               <ul className="grid grid-cols-1 gap-2">
@@ -109,7 +109,7 @@ const FooterNav = () => {
                 })}
               </ul>
             </div>
-          )}
+          )} */}
           {/* {collections && (
             <div className="flex flex-col gap-y-2">
               <span className="text-base-semi">Markets</span>
