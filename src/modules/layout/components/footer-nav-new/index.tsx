@@ -17,6 +17,7 @@ import {
   faInstagram,
   faInstagramSquare,
   faTiktok,
+  faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons"
 
 const FooterNav = () => {
@@ -200,12 +201,12 @@ const FooterNav = () => {
               <FontAwesomeIcon icon={faTiktok} color="#fff" fontSize={32} />
             </Link>
           </li>
-          {/* <li>
-            <Link href={"/"}>
-              <LinkedInIcon />
+          <li>
+            <Link href={"https://chat.whatsapp.com/B8aQorgFMiCHNJ3I4JGiEB"}>
+            <FontAwesomeIcon icon={faWhatsapp} color="#fff" fontSize={32} />
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link href={"/"}>
               <TelegramIcon />
             </Link>
