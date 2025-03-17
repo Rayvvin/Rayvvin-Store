@@ -2,7 +2,7 @@ import {
   CardCvcElement,
   CardExpiryElement,
   CardNumberElement,
-  
+  PaymentElement,
 } from "@stripe/react-stripe-js"
 import {
   StripeCardCvcElementOptions,
@@ -33,11 +33,12 @@ const PaymentStripe: React.FC = () => {
   return (
     <div>
       <div className="flex flex-col relative w-full pb-6">
-        <CardNumber options={useOptions as StripeCardNumberElementOptions} />
+        <PaymentElement options={{wallets: {googlePay: "auto", applePay: "auto"} }}/>
+        {/* <CardNumber options={useOptions as StripeCardNumberElementOptions} />
         <div className="flex items-center mt-12 relative gap-x-4">
           <CardExpiry options={useOptions as StripeCardExpiryElementOptions} />
           <CardCVC options={useOptions as StripeCardCvcElementOptions} />
-        </div>
+        </div> */}
       </div>
     </div>
   )
