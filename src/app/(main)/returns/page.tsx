@@ -14,7 +14,7 @@ export default function Returns() {
     </p>
     <p className="mb-4"><strong>1. Eligibility for Returns:</strong></p>
     <ul className="list-disc list-inside mb-4">
-      <li>Items must be returned within <em>14 days</em> of delivery.</li>
+      <li>Items must be returned within <em>3 days</em> of delivery.</li>
       <li>Products must be unused, in their original packaging, and in resalable condition.</li>
     </ul>
     <p className="mb-4"><strong>2. Non-Returnable Items:</strong></p>
