@@ -44,7 +44,7 @@ const SingleStoreTemplate = (props) => {
 
   return (
     <>
-      <StoreHero />
+      <StoreHero store={store} />
       <div
         className="flex flex-col relative 
       top-[-90px] sm:top-[-95px] md:top-[-100px] lg:top-[-110px] xl:top-[-120px]
@@ -94,12 +94,12 @@ const SingleStoreTemplate = (props) => {
                       products={products}
                       categories={storeCategories}
                     />
-                    <ServicesCarousel
+                    {/* <ServicesCarousel
                       store={store}
                       title={"Services To Help You Shop"}
                       categories={storeCategories}
                       products={products}
-                    />
+                    /> */}
                   </div>
                 ),
               },

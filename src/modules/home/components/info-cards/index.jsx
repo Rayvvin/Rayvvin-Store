@@ -11,8 +11,6 @@ import Image from "next/image"
 import InfoCard from "./infoCard"
 import StarRatingComponent from "react-star-rating-component"
 
-
-
 const InfoCards = (props) => {
   const { data } = useFeaturedProductsQuery({ limit: 4 })
   const [regions, setRegions] = useState([])
@@ -44,8 +42,6 @@ const InfoCards = (props) => {
     },
   ]
 
-
-
   //Store Metrics
   const metrics = {
     title: "Store Metrics",
@@ -61,7 +57,7 @@ const InfoCards = (props) => {
         id: "Categories",
         name: "Categories",
         icon: BiCategory,
-        value: storeCategories.map((ct) => ct.name).join(", "),
+        value: storeCategories?.map((ct) => ct.name).join(", "),
       },
       {
         id: "Top-Selling Products",
@@ -125,12 +121,25 @@ const InfoCards = (props) => {
               overflow-hidden rounded-full dark:bg-gray-600 m-1 dark:ring-gray-500 p-1 shadow-card"
               style={{ background: pickRandomColor() }}
             >
-              <span
+              <Image
+                src={
+                  store?.logo ||
+                  `/rayvvin_pngs/store_banners/${store?.name.toLowerCase()}.jpg`
+                } // store?.logo
+                // src={`/rayvvin_pngs/store_banners/${store?.name.toLowerCase()}.jpg`}
+                alt={store?.name}
+                // width={100}
+                // height={100}
+                fill
+                // layout="fixed"
+                // objectFit="contain"
+              />
+              {/* <span
                 className="font-medium text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white"
                 style={{ fontFamily: "Lemon, serif" }}
               >
                 {store?.name.split("")[0]}
-              </span>
+              </span> */}
             </div>
           </div>
           <div
@@ -142,7 +151,13 @@ const InfoCards = (props) => {
             </p>
             <div className="flex justify-start w-full">
               <span className="text-base-regular text-gray-600 mb-2">
-                {store && store.metadata && store.metadata.market ? store.metadata.market.state : "Region"} - {store && store.metadata && store.metadata.market ? store.metadata.market.market_name : "Market"}
+                {store && store.metadata && store.metadata.market
+                  ? store.metadata.market.state
+                  : "Address"}{" "}
+                -{" "}
+                {store && store.metadata && store.metadata.market
+                  ? store.metadata.market.market_name
+                  : "City"}
               </span>
             </div>
           </div>
