@@ -4,7 +4,7 @@ import { PricedProduct } from "@medusajs/medusa/dist/types/pricing"
 import Back from "@modules/common/icons/back"
 import FastDelivery from "@modules/common/icons/fast-delivery"
 import Refresh from "@modules/common/icons/refresh"
-import { Avatar } from "@nextui-org/react"
+import { Avatar, Link } from "@nextui-org/react"
 import clsx from "clsx"
 import { useEffect, useMemo, useState } from "react"
 import { createClient } from "@supabase/supabase-js"
@@ -209,15 +209,31 @@ const SellerTab = ({ product }) => {
   return (
     <Tab.Panel className="text-small-regular py-4 flex flex-col gap-y-4">
       <div className="grid grid-cols-1 gap-y-8 border-b border-gray-200 box-border pb-4">
-        <div className="flex items-center gap-x-4 w-full">
-          <Avatar src="/rayvvin_pngs/Avatar.png" size="md" />
-          <div className="flex flex-col w-full">
-            <span className="text-base">{store && store.store ? store?.store?.name : ""}</span>
-            <p className="text-xs text-[#4E4E4E] w-full">
-              Number of Months Selling on Rayvvin: {store && store.store ? Math.floor((new Date().getTime() - new Date(store.store.created_at).getTime()) / (1000 * 60 * 60 * 24 * 30)) : "-"}
-            </p>
+        <Link href={`/stores/${store?.store?.id}`}>
+          <div
+            className="flex items-center gap-x-4 w-full"
+            onClick={() => {
+              // window.location.href = `/stores/${store?.store?.id}`
+            }}
+          >
+            <Avatar src="/rayvvin_pngs/Avatar.png" size="md" />
+            <div className="flex flex-col w-full">
+              <span className="text-base">
+                {store && store.store ? store?.store?.name : ""}
+              </span>
+              <p className="text-xs text-[#4E4E4E] w-full">
+                Number of Months Selling on Rayvvin:{" "}
+                {store && store.store
+                  ? Math.floor(
+                      (new Date().getTime() -
+                        new Date(store.store.created_at).getTime()) /
+                        (1000 * 60 * 60 * 24 * 30)
+                    )
+                  : "-"}
+              </p>
+            </div>
           </div>
-        </div>
+        </Link>
       </div>
       <div className="grid grid-cols-1 gap-y-8">
         <div className="flex items-start gap-x-2 w-full">
