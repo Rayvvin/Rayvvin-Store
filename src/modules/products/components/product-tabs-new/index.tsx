@@ -216,7 +216,13 @@ const SellerTab = ({ product }) => {
               // window.location.href = `/stores/${store?.store?.id}`
             }}
           >
-            <Avatar src="/rayvvin_pngs/Avatar.png" size="md" />
+            <Avatar
+              src={
+                store?.store?.logo ||
+                `/rayvvin_pngs/store_banners/${store?.store?.name.toLowerCase()}.jpg`
+              }
+              size="md"
+            />
             <div className="flex flex-col w-full">
               <span className="text-base">
                 {store && store.store ? store?.store?.name : ""}
