@@ -45,7 +45,7 @@ const HomePage = () => {
     <div>
       {/* <Hero /> */}
       <div className="lg:container mx-auto box-border xl:px-32 lg:px-24 md:px-4">
-        <CustomHero images={["/rayvvin_pngs/Ad banner.png", "/rayvvin_pngs/Ad banner2.png", "/rayvvin_pngs/banner3.jpg"]} sx={"mb-8"} />
+        <CustomHero images={["/rayvvin_pngs/Ad banner.png", "/rayvvin_pngs/Ad banner2.png", "/rayvvin_pngs/banner3.jpg", "/rayvvin_pngs/banner5.png", "/rayvvin_pngs/banner6.png"]} sx={"mb-8"} />
         <CategoriesCarousel title={"Shop Groceries by categories"} />
         <FlashDealProducts
           // store={store}
@@ -53,7 +53,7 @@ const HomePage = () => {
           products={products}
           categories={categories}
         />
-        <CustomHero images={["/rayvvin_pngs/Component 2.png"]} />
+        <CustomHero images={["/rayvvin_pngs/Component 2.png", "/rayvvin_pngs/banner4.jpg", "/rayvvin_pngs/banner7.png"]} />
         <ExploreProducts
           // store={store}
           // users={users}
