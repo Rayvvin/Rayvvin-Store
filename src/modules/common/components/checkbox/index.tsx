@@ -3,7 +3,7 @@ import React from "react"
 type CheckboxProps = {
   checked?: boolean
   onChange?: () => void
-  label: string
+  label: string | React.ReactNode
 }
 
 const Checkbox: React.FC<CheckboxProps> = ({
@@ -26,7 +26,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
       >
         {checked ? "✓" : null}
       </div>
-      <span>{label}</span>
+      <span className="text-gray-700 text-small-regular">{label}</span>
     </button>
   )
 }

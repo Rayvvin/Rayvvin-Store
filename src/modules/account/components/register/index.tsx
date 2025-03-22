@@ -1,6 +1,7 @@
 import { medusaClient } from "@lib/config"
 import { LOGIN_VIEW, useAccount } from "@lib/context/account-context"
 import Button from "@modules/common/components/button"
+import Checkbox from "@modules/common/components/checkbox"
 import Input from "@modules/common/components/input"
 import Spinner from "@modules/common/icons/spinner"
 import Link from "next/link"
@@ -14,12 +15,14 @@ interface RegisterCredentials extends FieldValues {
   email: string
   password: string
   phone?: string
+  agree?: boolean
 }
 
 const Register = () => {
   const { loginView, refetchCustomer } = useAccount()
   const [_, setCurrentView] = loginView
   const [authError, setAuthError] = useState<string | undefined>(undefined)
+  const [agree, setAgree] = useState<boolean>(false)
   const router = useRouter()
 
   const handleError = (e: Error) => {
@@ -99,16 +102,26 @@ const Register = () => {
             </span>
           </div>
         )}
+
         <span className="text-center text-gray-700 text-small-regular mt-6">
           By creating an account, you agree to Rayvvin&apos;s{" "}
-          <Link href="/content/privacy-policy" className="underline">
+          <Link href="/privacy" className="underline">
             Privacy Policy
           </Link>{" "}
           and{" "}
-          <Link href="/content/terms-of-use" className="underline">
+          <Link href="/terms-and-conditions" className="underline">
             Terms of Use
           </Link>
           .
+        </span>
+        <span className="mt-6">
+          <Checkbox
+            checked={agree}
+            onChange={() => {
+              setAgree(!agree)
+            }}
+            label="Yes, I agree to the terms and conditions"
+          />
         </span>
         <Button className="mt-6 rounded-md !bg-[#3D8B7A] !border-[#3D8B7A]">
           Join
