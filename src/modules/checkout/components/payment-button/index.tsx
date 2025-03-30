@@ -132,7 +132,7 @@ const StripePaymentButton = ({
   const handlePayment = async () => {
     setSubmitting(true)
 
-    if (!stripe || !elements || !cart) {
+    if (!stripe || !elements || !card || !cart) {
       setSubmitting(false)
       return
     }
@@ -140,7 +140,7 @@ const StripePaymentButton = ({
     await stripe
       .confirmCardPayment(session.data.client_secret as string, {
         payment_method: {
-          // card: card,
+          card: card,
           billing_details: {
             name:
               cart.billing_address.first_name +
@@ -194,7 +194,7 @@ const StripePaymentButton = ({
         disabled={submitting || disabled || notReady}
         onClick={handlePayment}
       >
-        {submitting ? <Spinner /> : "Checkout"}
+        {submitting ? <Spinner /> : "Stripe Checkout"}
       </Button>
       {errorMessage && (
         <div className="text-red-500 text-small-regular mt-2">
