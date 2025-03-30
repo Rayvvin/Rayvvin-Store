@@ -133,6 +133,10 @@ const StripePaymentButton = ({
     setSubmitting(true)
 
     if (!stripe || !elements || !card || !cart) {
+      console.log(stripe);
+      console.log(elements);
+      console.log(card);
+      console.log(cart);
       setSubmitting(false)
       return
     }
