@@ -166,7 +166,7 @@ const StripePaymentButton = ({
         return_url: "https://www.rayvvin.com/checkout",
       },
     })
-      .then(({ error }) => {
+      .then(({ error, paymentIntent }) => {
         if (error) {
           const pi = error.payment_intent
 
@@ -181,12 +181,12 @@ const StripePaymentButton = ({
           return
         }
 
-        // if (
-        //   (paymentIntent && paymentIntent.status === "requires_capture") ||
-        //   paymentIntent.status === "succeeded"
-        // ) {
-        //   return onPaymentCompleted()
-        // }
+        if (
+          (paymentIntent && paymentIntent.status === "requires_capture") ||
+          paymentIntent.status === "succeeded"
+        ) {
+          return onPaymentCompleted()
+        }
 
         return
       })
