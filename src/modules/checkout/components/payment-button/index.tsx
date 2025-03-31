@@ -142,7 +142,7 @@ const StripePaymentButton = ({
       return
     }
 
-    const { error, paymentIntent } = await stripe.confirmPayment({
+    const response = await stripe.confirmPayment({
       elements: elements,
       confirmParams: {
         payment_method_data: {
@@ -165,7 +165,7 @@ const StripePaymentButton = ({
       },
     })
 
-    if (error) {
+    if (response.error) {
       const pi = error.payment_intent
 
       if (
@@ -179,8 +179,8 @@ const StripePaymentButton = ({
       return
     }
     else if (
-      (paymentIntent && paymentIntent.status === "requires_capture") ||
-      paymentIntent.status === "succeeded"
+      (response.paymentIntent && response.paymentIntent.status === "requires_capture") ||
+      response.paymentIntent.status === "succeeded"
     ) {
       return onPaymentCompleted()
     }
