@@ -3,6 +3,7 @@ import {
   CardExpiryElement,
   CardNumberElement,
   PaymentElement,
+  useCheckout
 } from "@stripe/react-stripe-js"
 import {
   StripeCardCvcElementOptions,
@@ -12,6 +13,7 @@ import {
 import React, { useMemo } from "react"
 
 const PaymentStripe: React.FC = () => {
+  const checkout = useCheckout();
   const useOptions:
     | StripeCardNumberElementOptions
     | StripeCardExpiryElementOptions
@@ -33,12 +35,12 @@ const PaymentStripe: React.FC = () => {
   return (
     <div>
       <div className="flex flex-col relative w-full pb-6">
-        {/* <PaymentElement options={{wallets: {googlePay: "auto", applePay: "auto"} }}/> */}
-        <CardNumber options={useOptions as StripeCardNumberElementOptions} />
+        <PaymentElement options={{wallets: {googlePay: "auto", applePay: "auto"} }}/>
+        {/* <CardNumber options={useOptions as StripeCardNumberElementOptions} />
         <div className="flex items-center mt-12 relative gap-x-4">
           <CardExpiry options={useOptions as StripeCardExpiryElementOptions} />
           <CardCVC options={useOptions as StripeCardCvcElementOptions} />
-        </div>
+        </div> */}
       </div>
     </div>
   )

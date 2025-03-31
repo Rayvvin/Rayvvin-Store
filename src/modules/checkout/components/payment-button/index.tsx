@@ -4,7 +4,7 @@ import Button from "@modules/common/components/button"
 import Spinner from "@modules/common/icons/spinner"
 import { OnApproveActions, OnApproveData } from "@paypal/paypal-js"
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js"
-import { useElements, useStripe } from "@stripe/react-stripe-js"
+import { useElements, useStripe, useCheckout } from "@stripe/react-stripe-js"
 import { useCart } from "medusa-react"
 import React, { useEffect, useState } from "react"
 import { PaystackButton } from "react-paystack"
@@ -120,6 +120,7 @@ const StripePaymentButton = ({
   const stripe = useStripe()
   const elements = useElements()
   const card = elements?.getElement("cardNumber")
+  const {confirm} = useCheckout()
 
   useEffect(() => {
     if (!stripe || !elements) {
@@ -132,40 +133,39 @@ const StripePaymentButton = ({
   const handlePayment = async () => {
     setSubmitting(true)
 
-    if (!stripe || !elements || !card || !cart) {
+    if (!stripe || !elements || !cart) {
       console.log(stripe);
       console.log(elements);
-      console.log(card);
+      // console.log(card);
       console.log(cart);
       setSubmitting(false)
       return
     }
 
-    await stripe
-      .confirmCardPayment(session.data.client_secret as string, {
-        payment_method: {
-          card: card,
-          billing_details: {
-            name:
-              cart.billing_address.first_name +
-              " " +
-              cart.billing_address.last_name,
-            address: {
-              city: cart.billing_address.city ?? undefined,
-              country: cart.billing_address.country_code ?? undefined,
-              line1: cart.billing_address.address_1 ?? undefined,
-              line2: cart.billing_address.address_2 ?? undefined,
-              postal_code: cart.billing_address.postal_code ?? undefined,
-              state: cart.billing_address.province ?? undefined,
-            },
-            email: cart.email,
-            phone: cart.billing_address.phone ?? undefined,
-          },
-        },
-      })
-      .then(({ error, paymentIntent }) => {
-        if (error) {
-          const pi = error.payment_intent
+    await confirm({
+      billingAddress: {
+        name:
+          cart.billing_address.first_name +
+          " " +
+          cart.billing_address.last_name,
+        address: {
+          city: cart.billing_address.city ?? undefined,
+          country: cart.billing_address.country_code ?? undefined,
+          line1: cart.billing_address.address_1 ?? undefined,
+          line2: cart.billing_address.address_2 ?? undefined,
+          postal_code: cart.billing_address.postal_code ?? undefined,
+          state: cart.billing_address.province ?? undefined,
+        },}
+        email: cart.email,
+            phoneNumber: cart.billing_address.phone ?? undefined,
+            redirect: 'always',
+            returnUrl: "https://www.rayvvin.com/checkout"
+
+
+    })
+    .then(({ error, success, type }) => {
+      if (type === 'error') {
+        const pi = error.payment_intent
 
           if (
             (pi && pi.status === "requires_capture") ||
@@ -176,21 +176,117 @@ const StripePaymentButton = ({
 
           setErrorMessage(error.message)
           return
-        }
+      }
+      else if(type === 'success'){
+        return onPaymentCompleted()
+      }
+      setLoading(false);
+    })
+    .finally(() => {
+      setSubmitting(false)
+    })
+    
+    // stripe
+    //   .confirmCardPayment(session.data.client_secret as string, {
+    //     payment_method: {
+    //       card: card,
+    //       billing_details: {
+    //         name:
+    //           cart.billing_address.first_name +
+    //           " " +
+    //           cart.billing_address.last_name,
+    //         address: {
+    //           city: cart.billing_address.city ?? undefined,
+    //           country: cart.billing_address.country_code ?? undefined,
+    //           line1: cart.billing_address.address_1 ?? undefined,
+    //           line2: cart.billing_address.address_2 ?? undefined,
+    //           postal_code: cart.billing_address.postal_code ?? undefined,
+    //           state: cart.billing_address.province ?? undefined,
+    //         },
+    //         email: cart.email,
+    //         phone: cart.billing_address.phone ?? undefined,
+    //       },
+    //     },
+    //   })
+    //   .then(({ error, paymentIntent }) => {
+    //     if (error) {
+    //       const pi = error.payment_intent
 
-        if (
-          (paymentIntent && paymentIntent.status === "requires_capture") ||
-          paymentIntent.status === "succeeded"
-        ) {
-          return onPaymentCompleted()
-        }
+    //       if (
+    //         (pi && pi.status === "requires_capture") ||
+    //         (pi && pi.status === "succeeded")
+    //       ) {
+    //         onPaymentCompleted()
+    //       }
 
-        return
-      })
-      .finally(() => {
-        setSubmitting(false)
-      })
-  }
+    //       setErrorMessage(error.message)
+    //       return
+    //     }
+
+    //     if (
+    //       (paymentIntent && paymentIntent.status === "requires_capture") ||
+    //       paymentIntent.status === "succeeded"
+    //     ) {
+    //       return onPaymentCompleted()
+    //     }
+
+    //     return
+    //   })
+    //   .finally(() => {
+    //     setSubmitting(false)
+    //   })
+    // }
+
+  //   await stripe
+  //     .confirmCardPayment(session.data.client_secret as string, {
+  //       payment_method: {
+  //         card: card,
+  //         billing_details: {
+  //           name:
+  //             cart.billing_address.first_name +
+  //             " " +
+  //             cart.billing_address.last_name,
+  //           address: {
+  //             city: cart.billing_address.city ?? undefined,
+  //             country: cart.billing_address.country_code ?? undefined,
+  //             line1: cart.billing_address.address_1 ?? undefined,
+  //             line2: cart.billing_address.address_2 ?? undefined,
+  //             postal_code: cart.billing_address.postal_code ?? undefined,
+  //             state: cart.billing_address.province ?? undefined,
+  //           },
+  //           email: cart.email,
+  //           phone: cart.billing_address.phone ?? undefined,
+  //         },
+  //       },
+  //     })
+  //     .then(({ error, paymentIntent }) => {
+  //       if (error) {
+  //         const pi = error.payment_intent
+
+  //         if (
+  //           (pi && pi.status === "requires_capture") ||
+  //           (pi && pi.status === "succeeded")
+  //         ) {
+  //           onPaymentCompleted()
+  //         }
+
+  //         setErrorMessage(error.message)
+  //         return
+  //       }
+
+  //       if (
+  //         (paymentIntent && paymentIntent.status === "requires_capture") ||
+  //         paymentIntent.status === "succeeded"
+  //       ) {
+  //         return onPaymentCompleted()
+  //       }
+
+  //       return
+  //     })
+  //     .finally(() => {
+  //       setSubmitting(false)
+  //     })
+  // }
 
   return (
     <>
