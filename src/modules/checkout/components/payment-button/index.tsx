@@ -164,7 +164,7 @@ const StripePaymentButton = ({
         return_url: "https://www.rayvvin.com/checkout",
       },
     })
-      .then(({ error, paymentIntent }) => {
+      .then(({ error }) => {
         if (error) {
           const pi = error.payment_intent
 
@@ -191,7 +191,7 @@ const StripePaymentButton = ({
       .finally(() => {
         setSubmitting(false)
       })
-  }
+    }
 
   // await confirm({
   //   billingAddress: {
