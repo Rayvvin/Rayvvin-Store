@@ -3,7 +3,6 @@ import {
   CardExpiryElement,
   CardNumberElement,
   PaymentElement,
-  useCheckout
 } from "@stripe/react-stripe-js"
 import {
   StripeCardCvcElementOptions,
@@ -13,7 +12,6 @@ import {
 import React, { useMemo } from "react"
 
 const PaymentStripe: React.FC = () => {
-  const checkout = useCheckout();
   const useOptions:
     | StripeCardNumberElementOptions
     | StripeCardExpiryElementOptions
