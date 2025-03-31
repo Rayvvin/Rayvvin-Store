@@ -179,12 +179,12 @@ const StripePaymentButton = ({
           return
         }
 
-        if (
-          (paymentIntent && paymentIntent.status === "requires_capture") ||
-          paymentIntent.status === "succeeded"
-        ) {
-          return onPaymentCompleted()
-        }
+        // if (
+        //   (paymentIntent && paymentIntent.status === "requires_capture") ||
+        //   paymentIntent.status === "succeeded"
+        // ) {
+        //   return onPaymentCompleted()
+        // }
 
         return
       })
