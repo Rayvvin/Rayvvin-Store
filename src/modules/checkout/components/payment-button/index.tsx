@@ -120,7 +120,7 @@ const StripePaymentButton = ({
   const stripe = useStripe()
   const elements = useElements()
   const card = elements?.getElement("cardNumber")
-  const {confirm} = useCheckout()
+  const { confirm } = useCheckout()
 
   useEffect(() => {
     if (!stripe || !elements) {
@@ -155,17 +155,18 @@ const StripePaymentButton = ({
           line2: cart.billing_address.address_2 ?? undefined,
           postal_code: cart.billing_address.postal_code ?? undefined,
           state: cart.billing_address.province ?? undefined,
-        },},
-        email: cart.email,
-            phoneNumber: cart.billing_address.phone ?? undefined,
-            redirect: 'always',
-            returnUrl: "https://www.rayvvin.com/checkout"
+        },
+      },
+      email: cart.email,
+      phoneNumber: cart.billing_address.phone ?? undefined,
+      redirect: 'always',
+      returnUrl: "https://www.rayvvin.com/checkout"
 
 
     })
-    .then(({ error, success, type }) => {
-      if (type === 'error') {
-        const pi = error.payment_intent
+      .then(({ error, success, type }) => {
+        if (type === 'error') {
+          const pi = error.payment_intent
 
           if (
             (pi && pi.status === "requires_capture") ||
@@ -176,16 +177,16 @@ const StripePaymentButton = ({
 
           setErrorMessage(error.message)
           return
-      }
-      else if(type === 'success'){
-        return onPaymentCompleted()
-      }
-      setLoading(false);
-    })
-    .finally(() => {
-      setSubmitting(false)
-    })
-    
+        }
+        else if (type === 'success') {
+          return onPaymentCompleted()
+        }
+        setLoading(false);
+      })
+      .finally(() => {
+        setSubmitting(false)
+      })
+
     // stripe
     //   .confirmCardPayment(session.data.client_secret as string, {
     //     payment_method: {
@@ -237,203 +238,203 @@ const StripePaymentButton = ({
     //   })
     // }
 
-  //   await stripe
-  //     .confirmCardPayment(session.data.client_secret as string, {
-  //       payment_method: {
-  //         card: card,
-  //         billing_details: {
-  //           name:
-  //             cart.billing_address.first_name +
-  //             " " +
-  //             cart.billing_address.last_name,
-  //           address: {
-  //             city: cart.billing_address.city ?? undefined,
-  //             country: cart.billing_address.country_code ?? undefined,
-  //             line1: cart.billing_address.address_1 ?? undefined,
-  //             line2: cart.billing_address.address_2 ?? undefined,
-  //             postal_code: cart.billing_address.postal_code ?? undefined,
-  //             state: cart.billing_address.province ?? undefined,
-  //           },
-  //           email: cart.email,
-  //           phone: cart.billing_address.phone ?? undefined,
-  //         },
-  //       },
-  //     })
-  //     .then(({ error, paymentIntent }) => {
-  //       if (error) {
-  //         const pi = error.payment_intent
+    //   await stripe
+    //     .confirmCardPayment(session.data.client_secret as string, {
+    //       payment_method: {
+    //         card: card,
+    //         billing_details: {
+    //           name:
+    //             cart.billing_address.first_name +
+    //             " " +
+    //             cart.billing_address.last_name,
+    //           address: {
+    //             city: cart.billing_address.city ?? undefined,
+    //             country: cart.billing_address.country_code ?? undefined,
+    //             line1: cart.billing_address.address_1 ?? undefined,
+    //             line2: cart.billing_address.address_2 ?? undefined,
+    //             postal_code: cart.billing_address.postal_code ?? undefined,
+    //             state: cart.billing_address.province ?? undefined,
+    //           },
+    //           email: cart.email,
+    //           phone: cart.billing_address.phone ?? undefined,
+    //         },
+    //       },
+    //     })
+    //     .then(({ error, paymentIntent }) => {
+    //       if (error) {
+    //         const pi = error.payment_intent
 
-  //         if (
-  //           (pi && pi.status === "requires_capture") ||
-  //           (pi && pi.status === "succeeded")
-  //         ) {
-  //           onPaymentCompleted()
-  //         }
+    //         if (
+    //           (pi && pi.status === "requires_capture") ||
+    //           (pi && pi.status === "succeeded")
+    //         ) {
+    //           onPaymentCompleted()
+    //         }
 
-  //         setErrorMessage(error.message)
-  //         return
-  //       }
+    //         setErrorMessage(error.message)
+    //         return
+    //       }
 
-  //       if (
-  //         (paymentIntent && paymentIntent.status === "requires_capture") ||
-  //         paymentIntent.status === "succeeded"
-  //       ) {
-  //         return onPaymentCompleted()
-  //       }
+    //       if (
+    //         (paymentIntent && paymentIntent.status === "requires_capture") ||
+    //         paymentIntent.status === "succeeded"
+    //       ) {
+    //         return onPaymentCompleted()
+    //       }
 
-  //       return
-  //     })
-  //     .finally(() => {
-  //       setSubmitting(false)
-  //     })
-  // }
+    //       return
+    //     })
+    //     .finally(() => {
+    //       setSubmitting(false)
+    //     })
+    // }
 
-  return (
-    <>
-      <Button
-        disabled={submitting || disabled || notReady}
-        onClick={handlePayment}
+    return (
+      <>
+        <Button
+          disabled={submitting || disabled || notReady}
+          onClick={handlePayment}
+        >
+          {submitting ? <Spinner /> : "Stripe Checkout"}
+        </Button>
+        {errorMessage && (
+          <div className="text-red-500 text-small-regular mt-2">
+            {errorMessage}
+          </div>
+        )}
+      </>
+    )
+  }
+
+  const PAYPAL_CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || ""
+
+  const PayPalPaymentButton = ({
+    session,
+    notReady,
+  }: {
+    session: PaymentSession
+    notReady: boolean
+  }) => {
+    const [submitting, setSubmitting] = useState(false)
+    const [errorMessage, setErrorMessage] = useState<string | undefined>(
+      undefined
+    )
+
+    const { cart } = useCart()
+    const { onPaymentCompleted } = useCheckout()
+
+    const handlePayment = async (
+      _data: OnApproveData,
+      actions: OnApproveActions
+    ) => {
+      actions?.order
+        ?.authorize()
+        .then((authorization) => {
+          if (authorization.status !== "COMPLETED") {
+            setErrorMessage(`An error occurred, status: ${authorization.status}`)
+            return
+          }
+          onPaymentCompleted()
+        })
+        .catch(() => {
+          setErrorMessage(`An unknown error occurred, please try again.`)
+        })
+        .finally(() => {
+          setSubmitting(false)
+        })
+    }
+    return (
+      <PayPalScriptProvider
+        options={{
+          "client-id": PAYPAL_CLIENT_ID,
+          currency: cart?.region.currency_code.toUpperCase(),
+          intent: "authorize",
+        }}
       >
-        {submitting ? <Spinner /> : "Stripe Checkout"}
-      </Button>
-      {errorMessage && (
-        <div className="text-red-500 text-small-regular mt-2">
-          {errorMessage}
-        </div>
-      )}
-    </>
-  )
-}
+        {errorMessage && (
+          <span className="text-rose-500 mt-4">{errorMessage}</span>
+        )}
+        <PayPalButtons
+          style={{ layout: "horizontal" }}
+          createOrder={async () => session.data.id as string}
+          onApprove={handlePayment}
+          disabled={notReady || submitting}
+        />
+      </PayPalScriptProvider>
+    )
+  }
 
-const PAYPAL_CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || ""
+  const FLW_PUBLIC_KEY = process.env.NEXT_PUBLIC_FLW_PUBLIC_KEY || ""
 
-const PayPalPaymentButton = ({
-  session,
-  notReady,
-}: {
-  session: PaymentSession
-  notReady: boolean
-}) => {
-  const [submitting, setSubmitting] = useState(false)
-  const [errorMessage, setErrorMessage] = useState<string | undefined>(
-    undefined
-  )
+  const config = {
+    public_key: FLW_PUBLIC_KEY,
+  }
 
-  const { cart } = useCart()
-  const { onPaymentCompleted } = useCheckout()
+  const FlutterwavePaymentButton = ({
+    session,
+    notReady,
+  }: {
+    session: PaymentSession
+    notReady: boolean
+  }) => {
+    const { cart } = useCart()
+    const { onPaymentCompleted } = useCheckout()
 
-  const handlePayment = async (
-    _data: OnApproveData,
-    actions: OnApproveActions
-  ) => {
-    actions?.order
-      ?.authorize()
-      .then((authorization) => {
-        if (authorization.status !== "COMPLETED") {
-          setErrorMessage(`An error occurred, status: ${authorization.status}`)
-          return
-        }
+    const txRef = String(session.data?.flutterwaveTxRef)
+    const total = cart?.total || 0
+    const email = cart?.email || ""
+    const phone = cart?.customer?.phone || ""
+    const first_name = cart?.customer?.first_name || ""
+    const last_name = cart?.customer?.last_name || ""
+    const currency = cart?.region.currency_code
+      ? cart?.region.currency_code.toUpperCase()
+      : ""
+
+    const fwConfig = {
+      ...config,
+      tx_ref: txRef,
+      amount: total,
+      currency: currency,
+      payment_options: "card,mobilemoney,ussd",
+      customer: {
+        email: email,
+        phone_number: phone,
+        name: `${first_name} ${last_name}`,
+      },
+      customizations: {
+        title: "Afriomarkets",
+        description: "Payment for items in cart",
+        logo: "https://www.afriomarkets.com/_next/image?url=%2Fafriomarket_pngs%2Fafrio%20market%20-%20logo.png&w=256&q=75",
+      },
+      text: "Pay with Flutterwave!",
+      callback: (response: any) => {
         onPaymentCompleted()
-      })
-      .catch(() => {
-        setErrorMessage(`An unknown error occurred, please try again.`)
-      })
-      .finally(() => {
-        setSubmitting(false)
-      })
+        closePaymentModal() // this will close the modal programmatically
+      },
+      onClose: () => { },
+    }
+
+    return <FlutterWaveButton {...fwConfig} />
   }
-  return (
-    <PayPalScriptProvider
-      options={{
-        "client-id": PAYPAL_CLIENT_ID,
-        currency: cart?.region.currency_code.toUpperCase(),
-        intent: "authorize",
-      }}
-    >
-      {errorMessage && (
-        <span className="text-rose-500 mt-4">{errorMessage}</span>
-      )}
-      <PayPalButtons
-        style={{ layout: "horizontal" }}
-        createOrder={async () => session.data.id as string}
-        onApprove={handlePayment}
-        disabled={notReady || submitting}
-      />
-    </PayPalScriptProvider>
-  )
-}
 
-const FLW_PUBLIC_KEY = process.env.NEXT_PUBLIC_FLW_PUBLIC_KEY || ""
+  const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
+    const [submitting, setSubmitting] = useState(false)
 
-const config = {
-  public_key: FLW_PUBLIC_KEY,
-}
+    const { onPaymentCompleted } = useCheckout()
 
-const FlutterwavePaymentButton = ({
-  session,
-  notReady,
-}: {
-  session: PaymentSession
-  notReady: boolean
-}) => {
-  const { cart } = useCart()
-  const { onPaymentCompleted } = useCheckout()
+    const handlePayment = () => {
+      setSubmitting(true)
 
-  const txRef = String(session.data?.flutterwaveTxRef)
-  const total = cart?.total || 0
-  const email = cart?.email || ""
-  const phone = cart?.customer?.phone || ""
-  const first_name = cart?.customer?.first_name || ""
-  const last_name = cart?.customer?.last_name || ""
-  const currency = cart?.region.currency_code
-    ? cart?.region.currency_code.toUpperCase()
-    : ""
-
-  const fwConfig = {
-    ...config,
-    tx_ref: txRef,
-    amount: total,
-    currency: currency,
-    payment_options: "card,mobilemoney,ussd",
-    customer: {
-      email: email,
-      phone_number: phone,
-      name: `${first_name} ${last_name}`,
-    },
-    customizations: {
-      title: "Afriomarkets",
-      description: "Payment for items in cart",
-      logo: "https://www.afriomarkets.com/_next/image?url=%2Fafriomarket_pngs%2Fafrio%20market%20-%20logo.png&w=256&q=75",
-    },
-    text: "Pay with Flutterwave!",
-    callback: (response: any) => {
       onPaymentCompleted()
-      closePaymentModal() // this will close the modal programmatically
-    },
-    onClose: () => {},
+
+      setSubmitting(false)
+    }
+
+    return (
+      <Button disabled={submitting || notReady} onClick={handlePayment}>
+        {submitting ? <Spinner /> : "Checkout"}
+      </Button>
+    )
   }
 
-  return <FlutterWaveButton {...fwConfig} />
-}
-
-const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
-  const [submitting, setSubmitting] = useState(false)
-
-  const { onPaymentCompleted } = useCheckout()
-
-  const handlePayment = () => {
-    setSubmitting(true)
-
-    onPaymentCompleted()
-
-    setSubmitting(false)
-  }
-
-  return (
-    <Button disabled={submitting || notReady} onClick={handlePayment}>
-      {submitting ? <Spinner /> : "Checkout"}
-    </Button>
-  )
-}
-
-export default PaymentButton
+  export default PaymentButton
