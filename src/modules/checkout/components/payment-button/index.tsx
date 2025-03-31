@@ -143,7 +143,7 @@ const StripePaymentButton = ({
     }
 
     await stripe.confirmPayment({
-      elements: elements,
+      // elements: elements,
       clientSecret: session.data.client_secret as string,
       confirmParams: {
         // payment_method: {},
