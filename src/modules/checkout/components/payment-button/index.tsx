@@ -186,6 +186,7 @@ const StripePaymentButton = ({
       .finally(() => {
         setSubmitting(false)
       })
+    }
 
     // stripe
     //   .confirmCardPayment(session.data.client_secret as string, {
