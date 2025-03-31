@@ -178,10 +178,7 @@ const StripePaymentButton = ({
       setErrorMessage(response.error.message)
       return
     }
-    else if (
-      (response.paymentIntent && response.paymentIntent.status === "requires_capture") ||
-      response.paymentIntent.status === "succeeded"
-    ) {
+    else {
       return onPaymentCompleted()
     }
 
