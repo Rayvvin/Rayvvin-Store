@@ -4,7 +4,7 @@ import Button from "@modules/common/components/button"
 import Spinner from "@modules/common/icons/spinner"
 import { OnApproveActions, OnApproveData } from "@paypal/paypal-js"
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js"
-import { useElements, useStripe, useCheckout } from "@stripe/react-stripe-js"
+import { useElements, useStripe, useCheckout:useCheckoutz } from "@stripe/react-stripe-js"
 import { useCart } from "medusa-react"
 import React, { useEffect, useState } from "react"
 import { PaystackButton } from "react-paystack"
@@ -120,7 +120,7 @@ const StripePaymentButton = ({
   const stripe = useStripe()
   const elements = useElements()
   const card = elements?.getElement("cardNumber")
-  const { confirm } = useCheckout()
+  const { confirm } = useCheckoutz()
 
   useEffect(() => {
     if (!stripe || !elements) {
