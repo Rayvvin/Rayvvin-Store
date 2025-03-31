@@ -166,7 +166,7 @@ const StripePaymentButton = ({
     })
 
     if (response.error) {
-      const pi = error.payment_intent
+      const pi = response.error.payment_intent
 
       if (
         (pi && pi.status === "requires_capture") ||
@@ -175,7 +175,7 @@ const StripePaymentButton = ({
         onPaymentCompleted()
       }
 
-      setErrorMessage(error.message)
+      setErrorMessage(response.error.message)
       return
     }
     else if (
