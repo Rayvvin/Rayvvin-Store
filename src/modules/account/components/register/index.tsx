@@ -41,7 +41,7 @@ const Register = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${process.env.SUPABASE_ANON_KEY}`, // Ensure this is securely stored
+          "Authorization": `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`, // Ensure this is securely stored
         },
         body: JSON.stringify({ email, userType }),
       });
