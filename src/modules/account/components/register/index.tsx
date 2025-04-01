@@ -35,11 +35,43 @@ const Register = () => {
     formState: { errors, isSubmitting },
   } = useForm<RegisterCredentials>()
 
+  async function generateTerm(email, userType) {
+    try {
+      const response = await fetch("https://qqhnbezrwcbdyidfudcs.supabase.co/functions/v1/generate-terms-pdf", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${process.env.SUPABASE_ANON_KEY}`, // Ensure this is securely stored
+        },
+        body: JSON.stringify({ email, userType }),
+      });
+  
+      const data = await response.json();
+  
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to generate terms");
+      }
+  
+      return data;
+    } catch (error) {
+      console.error("Error generating terms:", error.message);
+      return { error: error.message };
+    }
+  }
+  
+  
+  
+
   const onSubmit = handleSubmit(async (credentials) => {
     await medusaClient.customers
       .create(credentials)
       .then(() => {
+  
+  generateTerm(credentials.email, "customer")
+    .then((result) => console.log("Response:", result))
+    .catch((error) => console.error("Request failed:", error));      
         refetchCustomer()
+
         router.push("/account")
       })
       .catch(handleError)
