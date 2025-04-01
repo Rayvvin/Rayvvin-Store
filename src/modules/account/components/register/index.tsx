@@ -53,7 +53,7 @@ const Register = () => {
       }
   
       return data;
-    } catch (error) {
+    } catch (error as any) {
       console.error("Error generating terms:", error.message);
       return { error: error.message };
     }
