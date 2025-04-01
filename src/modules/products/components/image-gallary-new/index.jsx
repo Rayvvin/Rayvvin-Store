@@ -64,9 +64,9 @@ const ImageGallery = ({ images }) => {
       <div className="flex flex-col flex-1 small:mx-16 gap-y-4">
         <div
           ref={(image) => imageRefs.current.push(image)}
-          key={images && images[currentSlide].url}
+          key={images && images[currentSlide] && images[currentSlide].url}
           className="relative aspect-[29/34] w-full"
-          id={images && images[currentSlide].url}
+          id={images && images[currentSlide] && images[currentSlide].url}
         >
           <Image
             src={images && images[currentSlide].url}
