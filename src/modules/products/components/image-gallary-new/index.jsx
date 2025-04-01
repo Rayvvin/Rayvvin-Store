@@ -69,7 +69,7 @@ const ImageGallery = ({ images }) => {
           id={images && images[currentSlide] && images[currentSlide].url}
         >
           <Image
-            src={images && images[currentSlide].url}
+            src={images && images[currentSlide] && images[currentSlide].url}
             priority={currentSlide <= 2 ? true : false}
             className="absolute inset-0"
             alt={`Product image ${currentSlide + 1}`}
