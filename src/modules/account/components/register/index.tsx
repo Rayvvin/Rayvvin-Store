@@ -41,7 +41,7 @@ const Register = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`, // Ensure this is securely stored
+          "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFxaG5iZXpyd2NiZHlpZGZ1ZGNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzkxOTg0MTIsImV4cCI6MjA1NDc3NDQxMn0.CkpiVMx25MMW00o1KdTAV61PmDBHK3Xkly1EglpESoY`, // Ensure this is securely stored
         },
         body: JSON.stringify({ email, userType }),
       });
