@@ -9,6 +9,8 @@ import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { FieldValues, useForm } from "react-hook-form"
 
+const supabase_anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
 interface RegisterCredentials extends FieldValues {
   first_name: string
   last_name: string
@@ -41,7 +43,7 @@ const Register = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFxaG5iZXpyd2NiZHlpZGZ1ZGNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzkxOTg0MTIsImV4cCI6MjA1NDc3NDQxMn0.CkpiVMx25MMW00o1KdTAV61PmDBHK3Xkly1EglpESoY`, // Ensure this is securely stored
+          "Authorization": `Bearer ${supabase_anon}`, // Ensure this is securely stored
         },
         body: JSON.stringify({ email, userType }),
       });
