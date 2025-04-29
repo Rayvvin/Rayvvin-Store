@@ -258,7 +258,7 @@ const CategoriesCarousel = (props) => {
                         className="font-bold text-gray-700 mb-6 text-lg sm:text-lg md:text-lg lg:text-lg xl:text-xl"
                         // style={{ fontFamily: "Lemon, serif" }}
                       >
-                        {title ? title : filter.title}
+                        {categories ? `Shop ${categories?.name} by categories` : `Shop Rayvvin by categories`}
                       </p>
                     </div>
                   )
