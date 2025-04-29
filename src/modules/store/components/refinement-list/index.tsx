@@ -16,7 +16,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 type RefinementListProps = {
   refinementList: StoreGetProductsParams
   setRefinementList: (refinementList: StoreGetProductsParams) => void
-  categories?: any
+  category?: any
 }
 
 type SearchParamProps = {
@@ -26,9 +26,8 @@ type SearchParamProps = {
 const RefinementList = ({
   refinementList,
   setRefinementList,
-  categories,
-}: 
-RefinementListProps) => {
+  category,
+}: RefinementListProps) => {
   const { collections, isLoading } = useCollections()
   const { product_categories } = useProductCategories({ expand: "products" })
   const { product_types } = useProductTypes()
@@ -137,7 +136,7 @@ RefinementListProps) => {
   }
 
   return (
-    <div 
+    <div
     // className="sticky top-2.5 inset-x-0 group"
     >
       <div className="px-8 py-4  small:pr-2 small:pl-4 small:min-w-[250px] shadow-sm hidden flex-col h-full p-4 m-2 bg-white rounded-md space-y-4 lg:flex">
@@ -197,43 +196,46 @@ RefinementListProps) => {
           <div className="flex-col gap-x-4 small:flex-col small:gap-y-4 space-y-2">
             <span className="text-sm mb-4 text-[#595959]">Categories</span>
             <ul className="text-base-regular flex-col items-center gap-x-4 small:grid small:grid-cols-1 small:gap-y-2 px-2">
-              {product_categories?.map((c) => (
-                <li key={c.id}>
-                  <label className="flex items-center justify-between gap-x-2">
-                    <input
-                      type="checkbox"
-                      defaultChecked={refinementList.category_id?.includes(
-                        c.id
-                      )}
-                      onChange={(e) => handleCategoryChange(e, c.id)}
-                      className="accent-[#3D8B7A] hidden"
-                    />
-                    <p
-                      className={`${clsx("text-xs", {
-                        "text-[#3D8B7A]": refinementList.category_id?.includes(
+              {product_categories
+                ?.filter((cat) => {
+                  return refinementList.category_id?.includes(cat.id)
+                })
+                .map((c) => (
+                  <li key={c.id}>
+                    <label className="flex items-center justify-between gap-x-2">
+                      <input
+                        type="checkbox"
+                        defaultChecked={refinementList.category_id?.includes(
                           c.id
-                        ),
-                      })}`}
-                    >
-                      {c.name}
-                    </p>
-
-                    {c.products && (
-                      <span
-                        className={clsx(
-                          "inline-flex bg-[#E2EEEB] text-[#3D8B7A] text-sx me-2 px-2 py-0 rounded-full items-center",
-                          {
-                            "!bg-[#3D8B7A] text-white":
-                              refinementList.category_id?.includes(c.id),
-                          }
                         )}
+                        onChange={(e) => handleCategoryChange(e, c.id)}
+                        className="accent-[#3D8B7A] hidden"
+                      />
+                      <p
+                        className={`${clsx("text-xs", {
+                          "text-[#3D8B7A]":
+                            refinementList.category_id?.includes(c.id),
+                        })}`}
                       >
-                        {c.products.length}
-                      </span>
-                    )}
-                  </label>
-                </li>
-              ))}
+                        {c.name}
+                      </p>
+
+                      {c.products && (
+                        <span
+                          className={clsx(
+                            "inline-flex bg-[#E2EEEB] text-[#3D8B7A] text-sx me-2 px-2 py-0 rounded-full items-center",
+                            {
+                              "!bg-[#3D8B7A] text-white":
+                                refinementList.category_id?.includes(c.id),
+                            }
+                          )}
+                        >
+                          {c.products.length}
+                        </span>
+                      )}
+                    </label>
+                  </li>
+                ))}
             </ul>
           </div>
           <div className="flex-col gap-x-4 small:flex-col small:gap-y-4 space-y-2">

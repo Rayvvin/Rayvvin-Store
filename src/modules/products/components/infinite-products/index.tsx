@@ -9,6 +9,7 @@ import { useCart } from "medusa-react"
 import { useEffect, useMemo } from "react"
 import { useInView } from "react-intersection-observer"
 import { useInfiniteQuery } from "@tanstack/react-query"
+import Link from "next/link"
 
 type InfiniteProductsType = {
   params: StoreGetProductsParams,
@@ -16,9 +17,11 @@ type InfiniteProductsType = {
   users?: any,
   products?: any,
   title?: any, 
+  parent_category?: any, 
+  category?: any
 }
 
-const InfiniteProducts = ({ params, store, users, products, title }: InfiniteProductsType) => {
+const InfiniteProducts = ({ params, store, users, products, title, parent_category, category }: InfiniteProductsType) => {
   const { cart } = useCart()
 
   const { ref, inView } = useInView()
@@ -67,7 +70,28 @@ const InfiniteProducts = ({ params, store, users, products, title }: InfinitePro
 
   return (
     <div className="flex-1 content-container shadow-sm flex flex-col h-full w-full p-4 m-2 mx-0 sm:mx-2 bg-white rounded-md">
-      <span className="text-2xl font-bold p-2 mb-4">{title ? title : "Products"}</span>
+      {/* <span className="text-2xl font-bold p-2 mb-4">{title ? title : "Products"}</span> */}
+      <div className="flex flex-row mb-8 text-2xl-semi gap-4">
+        {category.parent_category && (
+          <>
+            <span className="text-gray-500">
+              <Link
+                className="mr-4 hover:text-black"
+                href={`/${category.parent_category.handle}`}
+              >
+                {category.parent_category.name}
+              </Link>
+              /
+            </span>
+          </>
+        )}
+        <h1>{category.name}</h1>
+      </div>
+      {category.description && (
+        <div className="mb-8 text-base-regular">
+          <p>{category.description}</p>
+        </div>
+      )}
       <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 gap-x-4 gap-y-8 flex-1">
         {previews.map((p) => (
           <li key={p.id}>

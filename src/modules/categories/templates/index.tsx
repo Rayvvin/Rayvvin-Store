@@ -15,6 +15,7 @@ import UnderlineLink from "@modules/common/components/underline-link"
 import RefinementList from "@modules/store/components/refinement-list"
 import InfiniteProducts from "@modules/products/components/infinite-products"
 import { StoreGetProductsParams } from "@medusajs/medusa"
+import CategoriesCarousel from "@modules/home/components/categories-carousel"
 
 type CategoryTemplateProps = {
   category: {
@@ -85,7 +86,7 @@ const CategoryTemplate: React.FC<CategoryTemplateProps> = ({
 
   return (
     <div className="content-container py-6">
-      <div className="flex flex-row mb-8 text-2xl-semi gap-4">
+      {/* <div className="flex flex-row mb-8 text-2xl-semi gap-4">
         {parent && (
           <>
             <span className="text-gray-500">
@@ -105,8 +106,8 @@ const CategoryTemplate: React.FC<CategoryTemplateProps> = ({
         <div className="mb-8 text-base-regular">
           <p>{category.description}</p>
         </div>
-      )}
-      {category.category_children && (
+      )} */}
+      {/* {category.category_children && (
         <div className="mb-8 text-base-large">
           <ul className="grid grid-cols-1 gap-2">
             {category.category_children?.map((c) => (
@@ -116,7 +117,7 @@ const CategoryTemplate: React.FC<CategoryTemplateProps> = ({
             ))}
           </ul>
         </div>
-      )}
+      )} */}
       <ul className="grid grid-cols-2 small:grid-cols-4 medium:grid-cols-6 gap-x-4 gap-y-8">
         {previews.map((p) => (
           <li key={p.id}>
@@ -130,15 +131,16 @@ const CategoryTemplate: React.FC<CategoryTemplateProps> = ({
             </li>
           ))}
       </ul>
-      {/* <div className="bg-[#FAFAFA]">
+      <CategoriesCarousel title={' '} categories={category} parent_category={parent}  />
+      <div className="bg-[#FAFAFA]">
         <div className="flex flex-col small:flex-row small:items-start py-6 pt-2">
           <RefinementList
             refinementList={params}
             setRefinementList={setParams}
           />
-          <InfiniteProducts params={params} />
+          <InfiniteProducts params={params} parent_category={parent} category={category} />
         </div>
-      </div> */}
+      </div>
       <div
         className="py-16 flex justify-center items-center text-small-regular text-gray-700"
         ref={ref}

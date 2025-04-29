@@ -45,7 +45,7 @@ const StoreTemplate = (props) => {
   return (
     <div className="bg-[#FAFAFA]">
       {/* <Hero /> */}
-      <CategoriesCarousel title={' '} />
+      <CategoriesCarousel title={' '}  />
       <div className="flex flex-col small:flex-row small:items-start py-6 pt-2">
         <RefinementList refinementList={params} setRefinementList={setParams} />
         <InfiniteProducts params={params} />

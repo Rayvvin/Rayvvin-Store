@@ -69,7 +69,7 @@ const FooterNav = () => {
               </li>
             </ul>
           </div> */}
-          {/* {product_categories && (
+          {product_categories && (
             <div className="flex flex-col gap-y-2">
               <span className="text-base-semi">Categories</span>
               <ul className="grid grid-cols-1 gap-2">
@@ -93,7 +93,7 @@ const FooterNav = () => {
                       >
                         {c.name}
                       </Link>
-                      {children && (
+                      {/* {children && (
                         <ul className="grid grid-cols-1 ml-3 gap-2">
                           {children &&
                             children.map((child) => (
@@ -104,13 +104,13 @@ const FooterNav = () => {
                               </li>
                             ))}
                         </ul>
-                      )}
+                      )} */}
                     </li>
                   )
                 })}
               </ul>
             </div>
-          )} */}
+          )}
           {/* {collections && (
             <div className="flex flex-col gap-y-2">
               <span className="text-base-semi">Markets</span>

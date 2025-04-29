@@ -1,6 +1,5 @@
 import { getCategoryByHandle } from "@lib/data"
 import CategoryTemplate from "@modules/categories/templates"
-import HomePage from "@modules/home/components/homepage-new"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 
@@ -32,5 +31,5 @@ export default async function CategoryPage({ params }: Props) {
 
   const category = product_categories[0]
 
-  return <HomePage category={category} />
+  return <CategoryTemplate category={category} />
 }

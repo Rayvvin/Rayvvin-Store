@@ -38,7 +38,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import CustomDealsSubscribe from "@modules/home/components/custom-deals-subscribe"
 import CustomDealsStats from "@modules/home/components/custom-deals-stats"
 
-const HomePage = () => {
+const HomePage = (props) => {
+  const {category} = props;
   const { stores, products, categories, loading, error } = useStoresProducts()
 
   return (
@@ -46,7 +47,7 @@ const HomePage = () => {
       {/* <Hero /> */}
       <div className="lg:container mx-auto box-border xl:px-32 lg:px-24 md:px-4">
         <CustomHero images={["/rayvvin_pngs/Ad banner.png", "/rayvvin_pngs/Ad banner2.png", "/rayvvin_pngs/banner3.jpg", "/rayvvin_pngs/banner5.png", "/rayvvin_pngs/banner6.png"]} sx={"mb-8"} />
-        <CategoriesCarousel title={"Shop Groceries by categories"} />
+        <CategoriesCarousel title={"Shop Groceries by categories"} categories={category} />
         <FlashDealProducts
           // store={store}
           // users={users}
