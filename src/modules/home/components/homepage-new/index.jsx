@@ -37,24 +37,52 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import CustomDealsSubscribe from "@modules/home/components/custom-deals-subscribe"
 import CustomDealsStats from "@modules/home/components/custom-deals-stats"
+import { useProductCategories } from "medusa-react"
 
 const HomePage = (props) => {
-  const {category} = props;
+  const { category } = props
   const { stores, products, categories, loading, error } = useStoresProducts()
+  // const { product_categories } = useProductCategories({
+  //   expand: "products",
+  // })
+
+  // useEffect(() => {
+  //   if (product_categories) {
+  //     console.log(product_categories)
+  //   }
+  // }, [product_categories])
 
   return (
     <div>
       {/* <Hero /> */}
       <div className="lg:container mx-auto box-border xl:px-32 lg:px-24 md:px-4">
-        <CustomHero images={["/rayvvin_pngs/Ad banner.png", "/rayvvin_pngs/Ad banner2.png", "/rayvvin_pngs/banner3.jpg", "/rayvvin_pngs/banner5.png", "/rayvvin_pngs/banner6.png"]} sx={"mb-8"} />
-        <CategoriesCarousel title={"Shop Groceries by categories"} categories={category} />
+        <CustomHero
+          images={[
+            "/rayvvin_pngs/Ad banner.png",
+            "/rayvvin_pngs/Ad banner2.png",
+            "/rayvvin_pngs/banner3.jpg",
+            "/rayvvin_pngs/banner5.png",
+            "/rayvvin_pngs/banner6.png",
+          ]}
+          sx={"mb-8"}
+        />
+        <CategoriesCarousel
+          title={"Shop Groceries by categories"}
+          categories={category}
+        />
         <FlashDealProducts
           // store={store}
           // users={users}
           products={products}
           categories={categories}
         />
-        <CustomHero images={["/rayvvin_pngs/Component 2.png", "/rayvvin_pngs/banner4.jpg", "/rayvvin_pngs/banner7.png"]} />
+        <CustomHero
+          images={[
+            "/rayvvin_pngs/Component 2.png",
+            "/rayvvin_pngs/banner4.jpg",
+            "/rayvvin_pngs/banner7.png",
+          ]}
+        />
         <ExploreProducts
           // store={store}
           // users={users}

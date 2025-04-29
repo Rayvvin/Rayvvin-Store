@@ -26,13 +26,13 @@ const CategoriesCarousel = (props) => {
   })
   const [products, setProducts] = useState([])
 
-  const filterType = (category) => {
-    setProducts(
-      data?.filter((item) => {
-        return item.category === category
-      })
-    )
-  }
+  // const filterType = (category) => {
+  //   setProducts(
+  //     data?.filter((item) => {
+  //       return item.category === category
+  //     })
+  //   )
+  // }
 
   // Define an array of colors
   const colors = ["#048630", "#861B04", "#043086", "#04865F", "#866204"]
@@ -115,7 +115,129 @@ const CategoriesCarousel = (props) => {
 
   return (
     <div className="mt-0">
-      {categories && categories.category_children && categories.category_children.length > 0 && (
+      {categories &&
+        categories.category_children &&
+        categories.category_children.length > 0 && (
+          <div className="content-container py-2 max-w-full px-6">
+            {/* <div className="flex flex-col items-center text-center mb-8">
+          <span className="text-base-regular text-gray-600 mb-4">
+            Latest products
+          </span>
+          <p className="text-2xl-regular text-gray-900 max-w-lg mb-2">
+            Our newest styles are here to help you look your best.
+          </p>
+        </div> */}
+
+            <div className="flex flex-col lg:flex-row">
+              {/* Fliter Type */}
+              {filters
+                ? filters.map((filter, i) => {
+                    return (
+                      <div key={i}>
+                        <p
+                          className="font-bold text-gray-700 mb-6 text-lg sm:text-lg md:text-lg lg:text-lg xl:text-xl"
+                          // style={{ fontFamily: "Lemon, serif" }}
+                        >
+                          {categories ? `Shop ${categories?.name} by categories` : `Shop Rayvvin by categories`}
+                        </p>
+                      </div>
+                    )
+                  })
+                : null}
+            </div>
+
+            <div
+              className={` ${
+                category_names && category_names.length > 0 ? "grid" : "flex"
+              } w-full grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-6 gap-x-4 gap-y-0`}
+            >
+              {categories &&
+              categories.category_children &&
+              categories.category_children.length > 0
+                ? categories.category_children?.slice(0, 6).map((c, i) => {
+                    // if (c.parent_category) {
+                    //   return
+                    // }
+
+                    // const children = c.category_children?.map((child) => ({
+                    //   name: child.name,
+                    //   handle: child.handle,
+                    //   id: child.id,
+                    // }))
+
+                    return (
+                      <Link
+                        href={`/${c.handle}`}
+                        className="flex flex-col justify-center items-center"
+                        key={i}
+                      >
+                        <div
+                          class="flex flex-col max-w-full w-[78px] sm:w-[120px] aspect-[1/1]  rounded-full shadow-sm px-4 py-3 border-1 hover:border-[#008ECC] justify-center items-center"
+                          // style={{ background: discounts[i].bg_color }}
+                          style={{ background: "#F5F5F5" }}
+                        >
+                          <div
+                            style={{
+                              width: "100%",
+                              height: "100%",
+                              position: "relative",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              display: "flex",
+                            }}
+                          >
+                            <Image
+                              src={`/rayvvin_pngs/categories/${category_names[i].image}`}
+                              alt="Thumbnail"
+                              className="absolute inset-0"
+                              draggable={false}
+                              fill
+                              sizes="100vw"
+                              style={{
+                                objectFit: "contain",
+                                objectPosition: "center",
+                                borderRadius: "9px",
+                              }}
+                            />
+                          </div>
+
+                          {/* <Thumbnail
+                      thumbnail={`/category${i + 1}.png`}
+                      size="full"
+                      classNamez="rounded-lg!"
+                    /> */}
+                        </div>
+                        <span className="inline-flex py-2 px-2 justify-center items-center w-full">
+                          <p
+                            className={
+                              "text-small-semi mb-3 font-normal text-[#737373]"
+                            }
+                          >
+                            <li className="flex flex-col gap-2" key={c.name}>
+                              {c.name}
+                            </li>
+                          </p>
+                        </span>
+                      </Link>
+                    )
+                  })
+                : // <div className="inline-flex gap-x-4 flex-auto justfiy-center items-center flex-nowrap mb-4 min-w-80 overflow-x-hidden max-w-full w-full">
+                  //   {Array.from(Array(5).keys()).map((i) => (
+                  //     <div
+                  //       key={i}
+                  //       className="min-w-[150px] sm:min-w-[160px] md:min-w-[180px] lg:min-w-[200px] xl:min-w-[250px]"
+                  //     >
+                  //       <SkeletonProductPreview />
+                  //     </div>
+                  //   ))}
+                  // </div>
+                  null}
+            </div>
+
+            <div className="w-full mt-4 relative flex justify-end items-center"></div>
+          </div>
+        )}
+      {!categories && product_categories && (
         <div className="content-container py-2 max-w-full px-6">
           {/* <div className="flex flex-col items-center text-center mb-8">
           <span className="text-base-regular text-gray-600 mb-4">
@@ -149,10 +271,16 @@ const CategoriesCarousel = (props) => {
               category_names && category_names.length > 0 ? "grid" : "flex"
             } w-full grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-6 gap-x-4 gap-y-0`}
           >
-            {categories &&
-            categories.category_children &&
-            categories.category_children.length > 0
-              ? categories.category_children?.slice(0, 6).map((c, i) => {
+            {product_categories &&
+              product_categories.filter((cat) => {
+                return !cat.parent_category_id
+              }).length &&
+              product_categories
+                .filter((cat) => {
+                  return !cat.parent_category_id
+                })
+                .slice(0, 6)
+                .map((c, i) => {
                   // if (c.parent_category) {
                   //   return
                   // }
@@ -185,7 +313,7 @@ const CategoriesCarousel = (props) => {
                           }}
                         >
                           <Image
-                            src={`/rayvvin_pngs/categories/${c.image}`}
+                            src={`/rayvvin_pngs/categories/${category_names[i].image}`}
                             alt="Thumbnail"
                             className="absolute inset-0"
                             draggable={false}
@@ -218,18 +346,7 @@ const CategoriesCarousel = (props) => {
                       </span>
                     </Link>
                   )
-                })
-              : // <div className="inline-flex gap-x-4 flex-auto justfiy-center items-center flex-nowrap mb-4 min-w-80 overflow-x-hidden max-w-full w-full">
-                //   {Array.from(Array(5).keys()).map((i) => (
-                //     <div
-                //       key={i}
-                //       className="min-w-[150px] sm:min-w-[160px] md:min-w-[180px] lg:min-w-[200px] xl:min-w-[250px]"
-                //     >
-                //       <SkeletonProductPreview />
-                //     </div>
-                //   ))}
-                // </div>
-                null}
+                })}
           </div>
 
           <div className="w-full mt-4 relative flex justify-end items-center"></div>
