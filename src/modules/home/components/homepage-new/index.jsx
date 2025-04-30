@@ -74,7 +74,7 @@ const HomePage = (props) => {
           // store={store}
           // users={users}
           products={products}
-          categories={categories}
+          categories={category}
         />
         <CustomHero
           images={[
@@ -87,7 +87,7 @@ const HomePage = (props) => {
           // store={store}
           // users={users}
           products={products}
-          categories={categories}
+          categories={category}
         />
       </div>
 
@@ -104,7 +104,7 @@ const HomePage = (props) => {
       <RecentProductsCarousel
         // title={`Popular Products from ${store?.name}`}
         title={`Recently Viewed`}
-        categories={categories}
+        categories={category}
         products={products}
         // store={store}
       />

@@ -21,7 +21,7 @@ const FlashDealProducts = (props) => {
   const { store, users, products: prods, categories: cat } = props
   const { data } = useFeaturedProductsQuery({
     limit: 12,
-    // category_id: categories,
+    category_id: cat ? [cat?.id].concat(cat?.category_children.map(ct => ct.id)) : [],
     // id: prods && prods.length && prods.map((p) => p.id),
     // store: store,
   })
@@ -67,9 +67,9 @@ const FlashDealProducts = (props) => {
     setProducts(data)
   }, [data])
 
-  useEffect(() => {
-    setCategories([{ id: "All", name: "All" }].concat(cat))
-  }, [cat])
+  // useEffect(() => {
+  //   setCategories([{ id: "All", name: "All" }].concat(cat))
+  // }, [cat])
 
   return (
     // <div className="py-12">

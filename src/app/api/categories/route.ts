@@ -16,8 +16,8 @@ export async function GET(request: NextRequest) {
     .listAndCountCategories(
       {},
       {
-        select: ["id", "handle", "name", "description", "parent_category"],
-        relations: ["category_children"],
+        select: ["id", "handle", "name", "description", "parent_category", "metadata"],
+        relations: ["category_children", "metadata"],
         skip: parseInt(offset) || 0,
         take: 100,
       }

@@ -24,7 +24,7 @@ const ExploreProducts = (props) => {
   const { stores, users, products: prods, categories: cat } = props
   const { data: products } = useFeaturedProductsQuery({
     limit: 12,
-    // category_id: categories,
+    category_id: cat ? [cat?.id].concat(cat?.category_children.map(ct => ct.id)) : [],
     // id: prods && prods.length && prods.map((p) => p.id),
     // expand: '* , variants'
     // store: store,
@@ -77,9 +77,9 @@ const ExploreProducts = (props) => {
     }
   }, [products])
 
-  useEffect(() => {
-    setCategories([{ id: "All", name: "All" }].concat(cat))
-  }, [cat])
+  // useEffect(() => {
+  //   setCategories([{ id: "All", name: "All" }].concat(cat))
+  // }, [cat])
 
   // const tabs = [
   //   {

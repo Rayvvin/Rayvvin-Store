@@ -9,10 +9,10 @@ import { getProductsList } from "@lib/data"
 import { useEffect, useState } from "react"
 
 const RecentProductsCarousel = (props) => {
-  const { title, categories, products: prods, store } = props
+  const { title, categories:cat, products: prods, store } = props
   const { data } = useFeaturedProductsQuery({
     limit: 8,
-    // category_id: categories,
+    category_id: cat ? [cat?.id].concat(cat?.category_children.map(ct => ct.id)) : [],
     id: prods && prods.length && prods.map((p) => p.id),
     // store: store,
   })

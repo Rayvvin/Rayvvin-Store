@@ -17,7 +17,7 @@ import Image from "next/image"
 
 const CategoriesCarousel = (props) => {
   const { title, categories, products: prods, store } = props
-  const { product_categories } = useProductCategories()
+  const { product_categories } = useProductCategories({expand: 'metadata'})
   const { data } = useFeaturedProductsQuery({
     limit: 5,
     category_id: categories,
@@ -109,9 +109,9 @@ const CategoriesCarousel = (props) => {
   }
 
   useEffect(() => {
-    console.log(categories)
+    console.log(product_categories)
     // setProducts(data)
-  }, [categories])
+  }, [product_categories])
 
   return (
     <div className="mt-0">

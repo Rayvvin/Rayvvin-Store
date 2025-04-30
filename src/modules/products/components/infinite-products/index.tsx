@@ -71,7 +71,7 @@ const InfiniteProducts = ({ params, store, users, products, title, parent_catego
   return (
     <div className="flex-1 content-container shadow-sm flex flex-col h-full w-full p-4 m-2 mx-0 sm:mx-2 bg-white rounded-md">
       {/* <span className="text-2xl font-bold p-2 mb-4">{title ? title : "Products"}</span> */}
-      <div className="flex flex-row mb-8 text-2xl-semi gap-4">
+      <div className="flex flex-row mb-8 text-xl-semi md:text-2xl-semi gap-4">
         {category && category.parent_category && (
           <>
             <span className="text-gray-500">

@@ -23,10 +23,16 @@ type CategoryTemplateProps = {
     name: string
     id: string
     description?: string
+    metadata?: {
+      thumbnail?: any
+    }
     category_children?: {
       name: string
       handle: string
       id: string
+      metadata?: {
+        thumbnail?: any
+      }
     }[]
   }
   parent?: {
@@ -42,9 +48,9 @@ const CategoryTemplate: React.FC<CategoryTemplateProps> = ({
   const { cart } = useCart()
   const { ref, inView } = useInView()
   const [params, setParams] = useState<StoreGetProductsParams>({
-    category_id: category.category_children?.map((c) => c.id)
-      // category_id: product_categories?.map((c) => c.id), collection_id: collections?.map((c) => c.id), type_id: product_types?.map((c) => c.id), tags: product_tags?.map((c) => c.value)
-    })
+    category_id: category.category_children?.map((c) => c.id),
+    // category_id: product_categories?.map((c) => c.id), collection_id: collections?.map((c) => c.id), type_id: product_types?.map((c) => c.id), tags: product_tags?.map((c) => c.value)
+  })
 
   const {
     data: infiniteData,
@@ -64,7 +70,6 @@ const CategoryTemplate: React.FC<CategoryTemplateProps> = ({
       getNextPageParam: (lastPage) => lastPage.nextPage,
     }
   )
-
 
   useEffect(() => {
     if (cart?.region_id) {
@@ -131,14 +136,22 @@ const CategoryTemplate: React.FC<CategoryTemplateProps> = ({
             </li>
           ))}
       </ul>
-      <CategoriesCarousel title={' '} categories={category} parent_category={parent}  />
+      <CategoriesCarousel
+        title={" "}
+        categories={category}
+        parent_category={parent}
+      />
       <div className="bg-[#FAFAFA]">
         <div className="flex flex-col small:flex-row small:items-start py-6 pt-2">
           <RefinementList
             refinementList={params}
             setRefinementList={setParams}
           />
-          <InfiniteProducts params={params} parent_category={parent} category={category} />
+          <InfiniteProducts
+            params={params}
+            parent_category={parent}
+            category={category}
+          />
         </div>
       </div>
       <div
