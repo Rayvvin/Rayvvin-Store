@@ -10,6 +10,7 @@ import { useEffect, useMemo } from "react"
 import { useInView } from "react-intersection-observer"
 import { useInfiniteQuery } from "@tanstack/react-query"
 import Link from "next/link"
+import clsx from "clsx"
 
 type InfiniteProductsType = {
   params: StoreGetProductsParams,
@@ -19,9 +20,10 @@ type InfiniteProductsType = {
   title?: any, 
   parent_category?: any, 
   category?: any
+  setOpen?: any
 }
 
-const InfiniteProducts = ({ params, store, users, products, title, parent_category, category }: InfiniteProductsType) => {
+const InfiniteProducts = ({ params, store, users, products, title, parent_category, category, setOpen }: InfiniteProductsType) => {
   const { cart } = useCart()
 
   const { ref, inView } = useInView()
@@ -92,12 +94,38 @@ const InfiniteProducts = ({ params, store, users, products, title, parent_catego
           <p>{category.description}</p>
         </div>
       )}
-      <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 gap-x-4 gap-y-8 flex-1">
+      <ul
+        className={clsx(
+          "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 gap-x-4 gap-y-8 flex-1",
+          {
+            "!flex": previews.length === 0 && !isLoading && !isFetchingNextPage,
+          }
+        )}
+      >
         {previews.map((p) => (
           <li key={p.id}>
             <ProductPreview {...p} />
           </li>
         ))}
+        {previews.length === 0 && !isLoading && !isFetchingNextPage && (
+          <div className="flex flex-col items-center justify-center text-center w-full h-full">
+            <span className="text-base-regular text-gray-500">
+              No products found. Try a different search or visit our{" "}
+              <Link href="/store">
+                <span
+                  className="text-lg-bold text-[#344F16] cursor-pointer"
+                  onClick={() => {
+                    setOpen(false);
+                    // router.push("/store");
+                  }}
+                >
+                  store
+                </span>
+              </Link>
+              .
+            </span>
+          </div>
+        )}
         {isLoading &&
           !previews.length &&
           repeat(8).map((index) => (

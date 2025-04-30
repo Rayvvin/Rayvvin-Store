@@ -82,7 +82,7 @@ const fetchFeaturedProducts = async (
       limit: limit ? limit : 8,
       cart_id: cartId,
       region_id: region.id,
-      // category_id: category_id,
+      category_id: category_id ? category_id : [],
       // id: id,
     },
     // expand: expand
@@ -152,7 +152,7 @@ const fetchFeaturedProducts = async (
 
 export const useFeaturedProductsQuery = (props?) => {
   const { cart } = useCart()
-  const { limit, categories, id, store, expand } = props
+  const { limit, categories, category_id, id, store, expand } = props
   // const _LimitProp = props;
   const queryResults = useQuery(
     [
@@ -160,7 +160,7 @@ export const useFeaturedProductsQuery = (props?) => {
       cart?.id,
       cart?.region,
       limit,
-      categories,
+      category_id,
       id,
       store,
       expand,
@@ -170,7 +170,7 @@ export const useFeaturedProductsQuery = (props?) => {
         cart?.id!,
         cart?.region!,
         limit,
-        categories,
+        category_id,
         id,
         store,
         expand

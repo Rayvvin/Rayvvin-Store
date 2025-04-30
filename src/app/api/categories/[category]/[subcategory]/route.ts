@@ -41,7 +41,7 @@ export async function GET(
           "products.tags",
           "products.options",
           "products.status",
-          "metadata"
+          
         ],
         select: ["id", "handle", "name", "description", "metadata"],
         take: 2,

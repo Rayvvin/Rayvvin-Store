@@ -21,6 +21,7 @@ import { usePathname } from "next/navigation"
 import { Fragment, useEffect, useState } from "react"
 import Breadcrumb from "../breadcrumb"
 import { useProductCategories } from "medusa-react"
+import FullSearchDropdown from "@modules/layout/components/fullsearch-dropdown"
 
 const Nav = () => {
   const pathname = usePathname()
@@ -175,54 +176,11 @@ const Nav = () => {
           pathname !== "/account/login" &&
           pathname !== "/account/register" && (
             <Fragment>
-              <div className="hidden sm:flex flex-1 mx-6 lg:w-6/12 md:w-auto md:mt-0">
+              <div className="sm:flex flex-1 mx-6 lg:w-6/12 md:w-auto md:mt-0">
                 <div className="flex w-full justify-center items-center">
-                  {/* <input
-                  type="text"
-                  placeholder="Search essentials, groceries, and more..."
-                  class="w-9/12 py-2 px-4 rounded-md bg-[#F3F9FB]"
-                /> */}
-                  <form className="max-w-md mx-auto w-9/12 rounded-md ">
-                    <label
-                      htmlFor="default-search"
-                      className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
-                    >
-                      Search
-                    </label>
-                    <div className="relative bg-[#F3F9FB] rounded-lg">
-                      <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                        <svg
-                          className="w-4 h-4 text-[#3D8B7A]"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                          />
-                        </svg>
-                      </div>
-                      <input
-                        type="search"
-                        id="default-search"
-                        className="block w-full p-4 ps-10 text-sm text-gray-900 border-0 rounded-lg bg-[#F3F9FB] focus:border-[#F3F9FB]"
-                        placeholder="Search essentials, groceries, and more..."
-                        required
-                      />
-                      <button
-                        type="submit"
-                        className="text-white absolute end-2.5 bottom-2.5 bg-transparent  font-medium rounded-lg text-sm px-4 py-2"
-                      >
-                        <FontAwesomeIcon icon={faBars} color="#3D8B7A" />
-                      </button>
-                    </div>
-                  </form>
+                  <FullSearchDropdown />
                 </div>
+                
               </div>
               <div className="items-center flex flex-row gap-6">
                 <Link

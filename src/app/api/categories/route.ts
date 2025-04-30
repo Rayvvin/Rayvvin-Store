@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
       {},
       {
         select: ["id", "handle", "name", "description", "parent_category", "metadata"],
-        relations: ["category_children", "metadata"],
+        relations: ["category_children"],
         skip: parseInt(offset) || 0,
         take: 100,
       }
