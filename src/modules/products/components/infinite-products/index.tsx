@@ -72,7 +72,7 @@ const InfiniteProducts = ({ params, store, users, products, title, parent_catego
     <div className="flex-1 content-container shadow-sm flex flex-col h-full w-full p-4 m-2 mx-0 sm:mx-2 bg-white rounded-md">
       {/* <span className="text-2xl font-bold p-2 mb-4">{title ? title : "Products"}</span> */}
       <div className="flex flex-row mb-8 text-2xl-semi gap-4">
-        {category.parent_category && (
+        {category && category.parent_category && (
           <>
             <span className="text-gray-500">
               <Link
@@ -85,9 +85,9 @@ const InfiniteProducts = ({ params, store, users, products, title, parent_catego
             </span>
           </>
         )}
-        <h1>{category.name}</h1>
+        <h1>{category?.name}</h1>
       </div>
-      {category.description && (
+      {category?.description && (
         <div className="mb-8 text-base-regular">
           <p>{category.description}</p>
         </div>

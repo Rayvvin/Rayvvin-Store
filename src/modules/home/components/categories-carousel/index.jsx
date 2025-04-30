@@ -167,7 +167,7 @@ const CategoriesCarousel = (props) => {
 
                     return (
                       <Link
-                        href={`/${c.handle}`}
+                        href={c.category_children && c.category_children.length ? `/${c.handle}` : `/${c.handle}/products`}
                         className="flex flex-col justify-center items-center"
                         key={i}
                       >
@@ -258,7 +258,8 @@ const CategoriesCarousel = (props) => {
                         className="font-bold text-gray-700 mb-6 text-lg sm:text-lg md:text-lg lg:text-lg xl:text-xl"
                         // style={{ fontFamily: "Lemon, serif" }}
                       >
-                        {categories ? `Shop ${categories?.name} by categories` : `Shop Rayvvin by categories`}
+                        
+                        {categories ? `Shop ${categories?.name} by categories` : ``}
                       </p>
                     </div>
                   )

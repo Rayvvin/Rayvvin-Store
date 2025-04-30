@@ -16,7 +16,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 type RefinementListProps = {
   refinementList: StoreGetProductsParams
   setRefinementList: (refinementList: StoreGetProductsParams) => void
-  category?: any
+  categories?: any
 }
 
 type SearchParamProps = {
@@ -26,7 +26,7 @@ type SearchParamProps = {
 const RefinementList = ({
   refinementList,
   setRefinementList,
-  category,
+  categories,
 }: RefinementListProps) => {
   const { collections, isLoading } = useCollections()
   const { product_categories } = useProductCategories({ expand: "products" })

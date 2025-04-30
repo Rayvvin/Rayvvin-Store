@@ -21,6 +21,7 @@ const usePreviews = <T extends InfiniteProductPage>({
     const products: PricedProduct[] = []
 
     for (const page of pages) {
+      // console.log(pages);
       products.push(...page.response.products)
     }
 
