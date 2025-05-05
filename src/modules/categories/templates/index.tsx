@@ -48,7 +48,7 @@ const CategoryTemplate: React.FC<CategoryTemplateProps> = ({
   const { cart } = useCart()
   const { ref, inView } = useInView()
   const [params, setParams] = useState<StoreGetProductsParams>({
-    category_id: category.category_children?.map((c) => c.id),
+    category_id: category.category_children?.map((c) => c.id).concat([category.id]),
     // category_id: product_categories?.map((c) => c.id), collection_id: collections?.map((c) => c.id), type_id: product_types?.map((c) => c.id), tags: product_tags?.map((c) => c.value)
   })
 

@@ -35,11 +35,11 @@ const RefinementList = ({
   const { products } = useProducts()
   const [openModal, setOpenModal] = useState(false)
 
-  // useEffect(() => {
-  //   if (product_categories) {
-  //     console.log(product_categories)
-  //   }
-  // }, [collections, product_categories])
+  useEffect(() => {
+    if (refinementList) {
+      console.log(refinementList)
+    }
+  }, [refinementList])
 
   // useEffect(() => {
   //   console.log(openModal)

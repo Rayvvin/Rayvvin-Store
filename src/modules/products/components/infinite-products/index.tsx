@@ -50,7 +50,7 @@ const InfiniteProducts = ({ params, store, users, products, title, parent_catego
     }
   }, [cart?.id, params, products])
   
-  // console.log(queryParams);
+  console.log(queryParams);
   
   const { data, hasNextPage, fetchNextPage, isLoading, isFetchingNextPage } =
     useInfiniteQuery(

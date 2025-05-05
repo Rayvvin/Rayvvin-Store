@@ -11,13 +11,22 @@ import { useInView } from "react-intersection-observer"
 import { useInfiniteQuery } from "@tanstack/react-query"
 
 type InfiniteProductsType = {
-  params: StoreGetProductsParams,
-  store?: any,
-  users?: any,
+  params: StoreGetProductsParams
+  store?: any
+  users?: any
   products?: any
+  category?: any
+  setOpen?: any
 }
 
-const SingleStoreInfiniteProducts = ({ params, store, users, products }: InfiniteProductsType) => {
+const SingleStoreInfiniteProducts = ({
+  params,
+  store,
+  users,
+  products,
+  category,
+  setOpen,
+}: InfiniteProductsType) => {
   const { cart } = useCart()
 
   const { ref, inView } = useInView()
@@ -26,9 +35,8 @@ const SingleStoreInfiniteProducts = ({ params, store, users, products }: Infinit
     // console.log(store, users, products.length)
     let p: StoreGetProductsParams = {}
 
-
-    if(products){
-      p.id = products.map(prd => prd.id)
+    if (products) {
+      p.id = products.map((prd) => prd.id)
     }
     // console.log(p)
 
@@ -43,20 +51,26 @@ const SingleStoreInfiniteProducts = ({ params, store, users, products }: Infinit
       ...params,
     }
   }, [cart?.id, params, products])
-  
-  console.log(queryParams);
-  
+
+  console.log(queryParams)
+
   const { data, hasNextPage, fetchNextPage, isLoading, isFetchingNextPage } =
-  queryParams && queryParams.id && queryParams.id.length ? 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useInfiniteQuery(
-      [`infinite-products-store`, queryParams, cart],
-      ({ pageParam }) => getProductsList({ pageParam, queryParams }),
-      {
-        getNextPageParam: (lastPage) => lastPage.nextPage,
-      }
-    )
-: {data : {}, hasNextPage: false, fetchNextPage: (()=>{}), isLoading: false, isFetchingNextPage: false}
+    queryParams && queryParams.id && queryParams.id.length
+      ? // eslint-disable-next-line react-hooks/rules-of-hooks
+        useInfiniteQuery(
+          [`infinite-products-store`, queryParams, cart],
+          ({ pageParam }) => getProductsList({ pageParam, queryParams }),
+          {
+            getNextPageParam: (lastPage) => lastPage.nextPage,
+          }
+        )
+      : {
+          data: {},
+          hasNextPage: false,
+          fetchNextPage: () => {},
+          isLoading: false,
+          isFetchingNextPage: false,
+        }
 
   const previews = usePreviews({ pages: data?.pages, region: cart?.region })
 
