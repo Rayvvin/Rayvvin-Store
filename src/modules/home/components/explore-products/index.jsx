@@ -221,7 +221,7 @@ const ProductsTab = ({ products }) => {
       <ul
         // className="grid grid-cols-2 small:grid-cols-6 gap-x-4 gap-y-8"
         className={` ${
-          products && products.length > 0 ? "grid" : "grid"
+          products && products.length > 0 ? "grid" : "flex"
         } grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 gap-x-4 gap-y-6`}
       >
         {products && products.length > 0 ? (
