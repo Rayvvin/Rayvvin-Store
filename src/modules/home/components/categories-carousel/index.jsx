@@ -14,10 +14,12 @@ import { useProductCategories } from "medusa-react"
 import Link from "next/link"
 import clsx from "clsx"
 import Image from "next/image"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faTable, faUser } from "@fortawesome/free-solid-svg-icons"
 
 const CategoriesCarousel = (props) => {
   const { title, categories, products: prods, store } = props
-  const { product_categories } = useProductCategories({expand: 'metadata'})
+  const { product_categories } = useProductCategories({ expand: "metadata" })
   const { data } = useFeaturedProductsQuery({
     limit: 5,
     category_id: categories,
@@ -90,7 +92,7 @@ const CategoriesCarousel = (props) => {
       image: "cat_3.png",
     },
     {
-      name: "Meat&Fish",
+      name: "Meat-Fish",
       image: "cat_4.png",
     },
     {
@@ -138,7 +140,9 @@ const CategoriesCarousel = (props) => {
                           className="font-bold text-gray-700 mb-6 text-lg sm:text-lg md:text-lg lg:text-lg xl:text-xl"
                           // style={{ fontFamily: "Lemon, serif" }}
                         >
-                          {categories ? `Shop ${categories?.name} by categories` : `Shop Rayvvin by categories`}
+                          {categories
+                            ? `Shop ${categories?.name} by categories`
+                            : `Shop Rayvvin by categories`}
                         </p>
                       </div>
                     )
@@ -164,10 +168,14 @@ const CategoriesCarousel = (props) => {
                     //   handle: child.handle,
                     //   id: child.id,
                     // }))
-
+                    console.log(c)
                     return (
                       <Link
-                        href={c.category_children && c.category_children.length ? `/${c.handle}` : `/${c.handle}/products`}
+                        href={
+                          c.category_children && c.category_children.length
+                            ? `/${c.handle}`
+                            : `/${c.handle}/products`
+                        }
                         className="flex flex-col justify-center items-center"
                         key={i}
                       >
@@ -186,19 +194,33 @@ const CategoriesCarousel = (props) => {
                               display: "flex",
                             }}
                           >
-                            <Image
-                              src={`/rayvvin_pngs/categories/${category_names[i].image}`}
-                              alt="Thumbnail"
-                              className="absolute inset-0"
-                              draggable={false}
-                              fill
-                              sizes="100vw"
-                              style={{
-                                objectFit: "contain",
-                                objectPosition: "center",
-                                borderRadius: "9px",
-                              }}
-                            />
+                            {category_names
+                              .map((ct) => ct.name.toLowerCase())
+                              .includes(c.handle) ? (
+                              <Image
+                                src={`/rayvvin_pngs/categories/${
+                                  category_names.find(
+                                    (ct) => ct.name.toLowerCase() === c.handle
+                                  ).image
+                                }`}
+                                alt="Thumbnail"
+                                className="absolute inset-0"
+                                draggable={false}
+                                fill
+                                sizes="100vw"
+                                style={{
+                                  objectFit: "contain",
+                                  objectPosition: "center",
+                                  borderRadius: "9px",
+                                }}
+                              />
+                            ) : (
+                              <FontAwesomeIcon
+                                icon={faTable}
+                                color="#3D8B7A"
+                                fontSize={20}
+                              />
+                            )}
                           </div>
 
                           {/* <Thumbnail
@@ -258,8 +280,9 @@ const CategoriesCarousel = (props) => {
                         className="font-bold text-gray-700 mb-6 text-lg sm:text-lg md:text-lg lg:text-lg xl:text-xl"
                         // style={{ fontFamily: "Lemon, serif" }}
                       >
-                        
-                        {categories ? `Shop ${categories?.name} by categories` : ``}
+                        {categories
+                          ? `Shop ${categories?.name} by categories`
+                          : ``}
                       </p>
                     </div>
                   )
