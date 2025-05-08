@@ -32,16 +32,17 @@ export default async function CategoryPage({ params }: Props) {
 
   const category = product_categories[0]
   console.log(category);
-  
-  if (
-    category &&
-    category.category_children &&
-    category.category_children.length > 0
-  ) {
-    return <HomePage category={category} />
-  } else {
-    return redirect(`/${category.handle}/products`)
-  }
+
+  // if (
+  //   category &&
+  //   category.category_children &&
+  //   category.category_children.length > 0
+  // ) {
+  //   return <HomePage category={category} />
+  // } else {
+  //   return redirect(`/${category.handle}/products`)
+  // }
+  return <HomePage category={category} />
 
   
 }
