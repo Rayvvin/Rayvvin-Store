@@ -61,6 +61,7 @@ const HomePage = (props) => {
               { url: "/rayvvin_pngs/banner8.jpg", category: "fashion" },
               { url: "/rayvvin_pngs/banner9.jpg", category: "fashion" },
               { url: "/rayvvin_pngs/Ad banner.png", category: "groceries" },
+              { url: "/rayvvin_pngs/banner11.jpg", category: "fashion" },
               { url: "/rayvvin_pngs/Ad banner2.png", category: "general" },
               { url: "/rayvvin_pngs/banner3.jpg", category: "groceries" },
               { url: "/rayvvin_pngs/banner5.png", category: "groceries" },
@@ -90,6 +91,8 @@ const HomePage = (props) => {
             const heroImages = [
               { url: "/rayvvin_pngs/banner10.jpg", category: "fashion" },
               { url: "/rayvvin_pngs/Component 2.png", category: "general" },
+              { url: "/rayvvin_pngs/banner12.jpg", category: "fashion" },
+              { url: "/rayvvin_pngs/banner13.jpg", category: "fashion" },
               { url: "/rayvvin_pngs/banner4.jpg", category: "general" },
               { url: "/rayvvin_pngs/banner7.png", category: "groceries" },
             ]
