@@ -67,7 +67,22 @@ const Register = () => {
   }
 
   const onSubmit = handleSubmit(async (credentials) => {
-    toast.promise(
+    setAuthError(undefined)
+    if (credentials.password !== credentials.conf_password) {
+      setAuthError("Passwords do not match")
+      return
+    }
+    delete credentials.conf_password
+    credentials.phone = credentials.phone?.replace(/\D/g, "")
+    credentials.first_name = credentials.first_name.trim()
+    credentials.last_name = credentials.last_name.trim()
+    credentials.email = credentials.email.trim().toLowerCase()
+    credentials.password = credentials.password.trim()
+    credentials.metadata = {
+      phone: credentials.phone,
+    }
+
+    await toast.promise(
       medusaClient.customers
         .create(credentials)
         .then(() => {
@@ -135,6 +150,15 @@ const Register = () => {
             })}
             type="password"
             autoComplete="new-password"
+            errors={errors}
+          />
+          <Input
+            label="Confirm Password"
+            {...register("conf_password", {
+              required: "Password is required",
+            })}
+            type="password"
+            autoComplete="conf_password"
             errors={errors}
           />
         </div>
