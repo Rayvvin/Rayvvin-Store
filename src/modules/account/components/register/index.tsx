@@ -39,6 +39,36 @@ const Register = () => {
     formState: { errors, isSubmitting },
   } = useForm<RegisterCredentials>()
 
+  async function sendCustomerSignupEmail(data: {
+    email: string
+    first_name: string
+    last_name?: string
+    phone: string
+  }) {
+    try {
+      const res = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          type: "customer_signup",
+          data,
+        }),
+      })
+
+      if (!res.ok) {
+        const result = await res.json()
+        throw new Error(result.message || "Failed to send signup email.")
+      }
+
+      return true
+    } catch (err) {
+      console.error("Signup email error:", err)
+      return false
+    }
+  }
+
   async function generateTerm(email, userType) {
     try {
       const response = await fetch(
@@ -78,9 +108,6 @@ const Register = () => {
     credentials.last_name = credentials.last_name.trim()
     credentials.email = credentials.email.trim().toLowerCase()
     credentials.password = credentials.password.trim()
-    credentials.metadata = {
-      phone: credentials.phone,
-    }
 
     await toast.promise(
       medusaClient.customers
@@ -90,6 +117,12 @@ const Register = () => {
           generateTerm(credentials.email, "customer")
             .then((result) => console.log("Response:", result))
             .catch((error) => console.error("Request failed:", error))
+          sendCustomerSignupEmail({
+            email: credentials.email,
+            first_name: credentials.first_name,
+            last_name: credentials.last_name,
+            phone: credentials.phone ?? "",
+          })
           refetchCustomer()
 
           router.push("/account")
