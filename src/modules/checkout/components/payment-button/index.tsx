@@ -53,13 +53,6 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({ paymentSession }) => {
       return (
         <PayStackPaymentButton session={paymentSession} notReady={notReady} />
       )
-    case "flutterwave":
-      return (
-        <FlutterwavePaymentButton
-          session={paymentSession}
-          notReady={notReady}
-        />
-      )
     case "manual":
       return <ManualTestPaymentButton notReady={notReady} />
     case "paypal":
@@ -178,9 +171,9 @@ const StripePaymentButton = ({
       setErrorMessage(response.error.message)
       return
     }
-    else {
-      return onPaymentCompleted()
-    }
+    // else {
+    //   return onPaymentCompleted()
+    // }
 
     setSubmitting(false);
 
@@ -270,52 +263,7 @@ const config = {
   public_key: FLW_PUBLIC_KEY,
 }
 
-const FlutterwavePaymentButton = ({
-  session,
-  notReady,
-}: {
-  session: PaymentSession
-  notReady: boolean
-}) => {
-  const { cart } = useCart()
-  const { onPaymentCompleted } = useCheckout()
 
-  const txRef = String(session.data?.flutterwaveTxRef)
-  const total = cart?.total || 0
-  const email = cart?.email || ""
-  const phone = cart?.customer?.phone || ""
-  const first_name = cart?.customer?.first_name || ""
-  const last_name = cart?.customer?.last_name || ""
-  const currency = cart?.region.currency_code
-    ? cart?.region.currency_code.toUpperCase()
-    : ""
-
-  const fwConfig = {
-    ...config,
-    tx_ref: txRef,
-    amount: total,
-    currency: currency,
-    payment_options: "card,mobilemoney,ussd",
-    customer: {
-      email: email,
-      phone_number: phone,
-      name: `${first_name} ${last_name}`,
-    },
-    customizations: {
-      title: "Afriomarkets",
-      description: "Payment for items in cart",
-      logo: "https://www.afriomarkets.com/_next/image?url=%2Fafriomarket_pngs%2Fafrio%20market%20-%20logo.png&w=256&q=75",
-    },
-    text: "Pay with Flutterwave!",
-    callback: (response: any) => {
-      onPaymentCompleted()
-      closePaymentModal() // this will close the modal programmatically
-    },
-    onClose: () => { },
-  }
-
-  return <FlutterWaveButton {...fwConfig} />
-}
 
 const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
   const [submitting, setSubmitting] = useState(false)

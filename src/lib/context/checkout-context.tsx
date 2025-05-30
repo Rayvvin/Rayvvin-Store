@@ -181,6 +181,25 @@ export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart])
 
+  useEffect(() => {
+    if (cart) {
+      if (
+        cart.payment_session?.provider_id === "stripe" &&
+        cart.payment_session?.data?.client_secret &&
+        cart.payment_session?.data?.object === "payment_intent"
+      ) {
+        if (
+          (cart.payment_session?.data &&
+            cart.payment_session?.data?.status === "requires_capture") ||
+          (cart.payment_session?.data &&
+            cart.payment_session?.data?.status === "succeeded")
+        ) {
+          onPaymentCompleted()
+        }
+      }
+    }
+  }, [cart])
+
   /**
    * Method to set the selected shipping method for the cart. This is called when the user selects a shipping method, such as UPS, FedEx, etc.
    */
