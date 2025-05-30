@@ -23,6 +23,7 @@ import { useRouter } from "next/navigation"
 import React, { createContext, useContext, useEffect, useMemo } from "react"
 import { FormProvider, useForm, useFormContext } from "react-hook-form"
 import { useStore } from "./store-context"
+import { toast } from "react-toastify"
 
 type AddressValues = {
   first_name: string
@@ -182,12 +183,46 @@ export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
   }, [cart])
 
   useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search)
+    const paymentIntent = urlParams.get("payment_intent")
+    const paymentIntentClientSecret = urlParams.get(
+      "payment_intent_client_secret"
+    )
+    const redirectStatus = urlParams.get("redirect_status")
+
+    
     if (cart) {
+      console.log("Cart updated", cart)
       if (
         cart.payment_session?.provider_id === "stripe" &&
         cart.payment_session?.data?.client_secret &&
         cart.payment_session?.data?.object === "payment_intent"
       ) {
+        if (paymentIntent && paymentIntentClientSecret && redirectStatus) {
+          if (
+            cart.payment_session.data.id === paymentIntent &&
+            cart.payment_session.data.client_secret ===
+              paymentIntentClientSecret
+          ) {
+            if (redirectStatus === "succeeded") {
+              toast("Payment successful.", {
+                type: "success",
+              })
+              onPaymentCompleted();
+            } else if (redirectStatus === "requires_action") {
+              toast("Additional action required for payment intent.", {
+                type: "info",
+              })
+            } else if (redirectStatus === "failed") {
+              toast("Payment intent failed or was canceled.", {
+                type: "error",
+              })
+            }
+          } else {
+            // If the payment intent does not match, we can create a new one
+            // initPayment()
+          }
+        }
         if (
           (cart.payment_session?.data &&
             cart.payment_session?.data?.status === "requires_capture") ||
