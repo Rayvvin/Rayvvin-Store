@@ -154,7 +154,7 @@ const StripePaymentButton = ({
             },
           }
         },
-        return_url: "http://localhost:8000/checkout",
+        return_url: "https://www.rayvvin.com/checkout",
       },
     })
 
